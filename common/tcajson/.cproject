@@ -54,12 +54,12 @@
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="jsonpp.null.1178019642" name="jsonpp"/>
+		<project id="tcajson.null.1178019642" name="tcajson"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
-			<resource resourceType="PROJECT" workspacePath="/jsonpp"/>
+			<resource resourceType="PROJECT" workspacePath="/tcajson"/>
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
