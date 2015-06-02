@@ -32,20 +32,20 @@ include $(TOPDIR)/tcamake/project_defs
 
 lib: arlib
 
-arlib: lib/libjsonpp.a
+arlib: lib/libtcatcajson.a
 
-solib: libjsonpp.so.0.2.2
+solib: libtcajson.so.0.2.2
 
-lib/libjsonpp.a: $(OBJS)
+lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libjsonpp.so.0.2.2: $(OBJS)
+libtcajson.so.0.2.2: $(OBJS)
 	( $(MKDIR) lib )
-	( $(RM) lib/$@ lib/libjsonpp.so )
+	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)
-	( mv $@ lib/; cd lib; ln -s $@ libjsonpp.so )
+	( mv $@ lib/; cd lib; ln -s $@ libtcajson.so )
 	@echo
 
 .PHONY: test

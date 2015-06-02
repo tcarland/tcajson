@@ -4,7 +4,7 @@
 #include <fstream>
 
 #include "JSON.h"
-using namespace jsonpp;
+using namespace tcajson;
 
 
 int main ( int argc, char **argv )

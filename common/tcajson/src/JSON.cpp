@@ -6,30 +6,30 @@
   *
   * @section LICENSE
   *
-  * This file is part of jsonpp.
+  * This file is part of tcajson.
   *
-  * jsonpp is free software: you can redistribute it and/or modify
+  * tcajson is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Lesser General Public License as
   * published by the Free Software Foundation, either version 3 of
   * the License, or (at your option) any later version.
   *
-  * jsonpp is distributed in the hope that it will be useful,
+  * tcajson is distributed in the hope that it will be useful,
   * but WITHOUT ANY WARRANTY; without even the implied warranty of
   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   * GNU Lesser General Public License for more details.
   *
   * You should have received a copy of the GNU Lesser General Public
-  * License along with jsonpp.
+  * License along with tcajson.
   * If not, see <http://www.gnu.org/licenses/>.
 **/
-#define _JSONPP_JSON_CPP_
+#define _TCAJSON_JSON_CPP_
 
 #include <set>
 
 #include "JSON.h"
 
 
-namespace jsonpp {
+namespace tcajson {
 
 // ------------------------------------------------------------------------- //
 
@@ -726,12 +726,12 @@ JSON::ToString ( const JsonItem * item )
     return std::string("Invalid type");
 }
 
-/**  Returns a string of the jsonpp library version */
+/**  Returns a string of the tcajson library version */
 std::string
 JSON::Version()
 {
-    std::string ver = "jsonpp v";
-    ver.append(JSONPP_VERSION);
+    std::string ver = "tcajson v";
+    ver.append(TCAJSON_VERSION);
     return ver;
 }
 
@@ -750,5 +750,5 @@ JSON::ValidChar ( char c )
 
 } // namespace
 
-// _JSONPP_JSON_CPP_
+// _TCAJSON_JSON_CPP_
 

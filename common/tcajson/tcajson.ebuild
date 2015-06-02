@@ -6,9 +6,9 @@ EAPI=4
 
 inherit eutils
 
-DESCRIPTION="The 'libjsonpp' C++ JSON Library"
+DESCRIPTION="The 'tcajson' C++ JSON Library"
 HOMEPAGE=""
-SRC_URI="http://build.packetsled.com/gentoo/amd64/distfiles/${P}.tar.gz"
+SRC_URI="http://charltontechnology.net/gentoo/amd64/distfiles/${P}.tar.gz"
 
 LICENSE="lgpl"
 SLOT="0"
@@ -24,9 +24,9 @@ src_compile() {
 
 src_install() {
 	insinto /usr/lib
-	dolib.so lib/libjsonpp.so.${PVR} || die "File copy failed"
-	dolib.so lib/libjsonpp.so || die "File copy failed"
-	insinto /usr/include/jsonpp
+	dolib.so lib/tcajson.so.${PVR} || die "File copy failed"
+	dolib.so lib/tcajson.so || die "File copy failed"
+	insinto /usr/include/tcajson
 	doins include/* || die "File copy failed"
 }
 

@@ -6,36 +6,36 @@
   *
   * @section LICENSE
   *
-  * This file is part of jsonpp.
+  * This file is part of tcajson.
   *
-  * jsonpp is free software: you can redistribute it and/or modify
+  * tcajson is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Lesser General Public License as
   * published by the Free Software Foundation, either version 3 of
   * the License, or (at your option) any later version.
   *
-  * jsonpp is distributed in the hope that it will be useful,
+  * tcajson is distributed in the hope that it will be useful,
   * but WITHOUT ANY WARRANTY; without even the implied warranty of
   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   * GNU Lesser General Public License for more details.
   *
   * You should have received a copy of the GNU Lesser General Public
-  * License along with jsonpp.
+  * License along with tcajson.
   * If not, see <http://www.gnu.org/licenses/>.
 **/
-#define _JSONPP_JSONOBJECT_CPP_
+#define _TCAJSON_JSONOBJECT_CPP_
 
 #include "JsonObject.h"
 #include "JSON.h"
 
 
-namespace jsonpp {
+namespace tcajson {
 
 
 // ------------------------------------------------------------------------- //
 
 /** JsonObject constructor */
 JsonObject::JsonObject()
-	: JsonItem(JSON_OBJECT)
+    : JsonItem(JSON_OBJECT)
 {}
 
 /**  JsonObject copy constructor */
@@ -226,5 +226,5 @@ JsonObject::toString() const
 
 } // namespace
 
-// _JSONPP_JSONOBJECT_CPP_
+// _TCAJSON_JSONOBJECT_CPP_
 

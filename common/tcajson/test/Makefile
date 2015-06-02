@@ -22,7 +22,7 @@ endif
 # custom lib/includes
 INCLUDES=       -I../include
 LFLAGS=		-L../lib
-LIBS=		-ljsonpp
+LIBS=		-ltcajson
 
 BIN=		jsontest
 OBJS=		jsontest.o

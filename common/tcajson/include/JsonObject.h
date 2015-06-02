@@ -6,24 +6,24 @@
   *
   * @section LICENSE
   *
-  * This file is part of jsonpp.
+  * This file is part of tcajson.
   *
-  * jsonpp is free software: you can redistribute it and/or modify
+  * tcajson is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Lesser General Public License as
   * published by the Free Software Foundation, either version 3 of
   * the License, or (at your option) any later version.
   *
-  * jsonpp is distributed in the hope that it will be useful,
+  * tcajson is distributed in the hope that it will be useful,
   * but WITHOUT ANY WARRANTY; without even the implied warranty of
   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   * GNU Lesser General Public License for more details.
   *
   * You should have received a copy of the GNU Lesser General Public
-  * License along with jsonpp.
+  * License along with tcajson.
   * If not, see <http://www.gnu.org/licenses/>.
 **/
-#ifndef _JSONPP_JSONOBJECT_H_
-#define _JSONPP_JSONOBJECT_H_
+#ifndef _TCAJSON_JSONOBJECT_H_
+#define _TCAJSON_JSONOBJECT_H_
 
 #include <map>
 #include <iterator>
@@ -32,7 +32,7 @@
 #include "JsonException.hpp"
 
 
-namespace jsonpp {
+namespace tcajson {
 
 
 /** The JsonObject class represents the core JSON type of 
@@ -93,5 +93,5 @@ class JsonObject : public JsonItem {
 
 } // namespace
 
-#endif // _JSONPP_JSONOBJECT_H_
+#endif // _TCAJSON_JSONOBJECT_H_
 
