@@ -48,10 +48,25 @@ int main ( int argc, char **argv )
     std::cout << std::endl;
     std::cout << root << std::endl;
 
+    /*  Create a structure from scratch  */
+    std::cout << " --- " << std::endl;
+
+    JsonObject   rec;
+
+    rec.insert("src_ip", new JsonString(root["src_ip"]->toString(false)));
+    rec.insert("src_port", new JsonArray());
+
+    JsonArray * ary = (JsonArray*) rec["src_port"];
+    ary->insert(new JsonNumber(3222));
+    ary->insert(new JsonNumber(8888));
+
+    std::cout << rec << std::endl;
+    std::cout << " --- " << std::endl;
+
+    /* Reading from a file */
     if ( argc == 1 )
         return 0;
 
-    /* Reading from a file */
     const char  * fn = argv[1];
     std::ifstream ifs(fn);
 

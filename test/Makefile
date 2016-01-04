@@ -24,18 +24,22 @@ INCLUDES=       -I../include
 LFLAGS=		-L../lib
 LIBS=		-ltcajson
 
-BIN=		jsontest
-OBJS=		jsontest.o
+BIN=		jsontest jsoncreate
+OBJS=		jsontest.o jsoncreate.o
 
 ALL_OBJS=	$(OBJS) 
 ALL_BINS=	$(BIN)
 
-all: jsontest
+all: jsontest jsoncreate
 
 include $(TOPDIR)/tcamake/project_defs
 
 
-jsontest: $(OBJS)
+jsontest: jsontest.o
+	$(make-cxxbin-rule)
+	@echo
+
+jsoncreate: jsoncreate.o
 	$(make-cxxbin-rule)
 	@echo
 

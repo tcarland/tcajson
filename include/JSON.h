@@ -40,7 +40,7 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.2.2"
+#define TCAJSON_VERSION     "0.3.1"
 
 
 /* std::ostream support */
@@ -93,7 +93,7 @@ class JSON {
     static bool        IsSeparator  ( std::istream   & buf );
     static bool        ValidChar    ( char    c );
     static std::string TypeToString ( json_t  t );
-    static std::string ToString     ( const JsonItem * item );
+    static std::string ToString     ( const JsonItem * item, bool asJson = true );
     static std::string Version();
 
 

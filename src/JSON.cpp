@@ -50,7 +50,7 @@ operator<< ( std::ostream & strm, const JsonArray & ary )
 std::ostream&
 operator<< ( std::ostream & strm, const JsonItem & val )
 {
-    strm << val.toString();
+    strm << val.toString(true);
     return strm;
 }
 
@@ -71,7 +71,7 @@ operator<< ( std::ostream & strm, const JsonBoolean & val )
 std::ostream&
 operator<< ( std::ostream & strm, const JsonString & str )
 {
-    strm << str.toString();
+    strm << str.toString(true);
     return strm;
 }
 
@@ -696,14 +696,17 @@ JSON::TypeToString ( json_t t )
     return name;
 }
 
-/**  Converts the provided JsonItem to a readable string */
+/**  Converts the provided JsonItem to a readable string. Note that
+  *  by default all items are formatted as JSON, so strings will
+  *  returned in quotes. Set the 'asJson' boolean to false to obtain
+  *  bare strings */
 std::string
-JSON::ToString ( const JsonItem * item )
+JSON::ToString ( const JsonItem * item, bool asJson )
 {
     json_t  t = item->getType();
 
     if ( t == JSON_ITEM ) {
-        return item->toString();
+        return item->toString(asJson);
     } else if ( t == JSON_OBJECT ) {
         const JsonObject * obj = (const JsonObject*) item;
         return obj->toString();
@@ -715,7 +718,7 @@ JSON::ToString ( const JsonItem * item )
         return num->toString();
     } else if ( t == JSON_STRING ) {
         const JsonString * str = (const JsonString*) item;
-        return str->toString();
+        return str->toString(asJson);
     } else if ( t == JSON_BOOL_TRUE || t == JSON_BOOL_FALSE ) {
         const JsonBoolean * jb = (const JsonBoolean*) item;
         return jb->toString();

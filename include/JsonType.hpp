@@ -75,15 +75,22 @@ class JsonType : public JsonItem {
     const T& value() const { return _value; }
 
 
-    virtual std::string toString() const
+    /** Note that the default value for the 'asJson' parameter here 
+      * is false. This only affects JsonString objects which will be 
+      * printed without quotes when using the direct JsonString::toString() 
+      * method. Other 'toString()' functions will default this to true 
+      * so that objects are displayed properly (ie. JsonObject::toString() 
+      * will print all contained JsonStrings in quotes as they should be).
+     **/
+    virtual std::string toString ( bool asJson = false ) const
     {
         std::stringstream jstr;
         bool s = false;
 
         if ( this->getType() == JSON_STRING )
             s = true;
-
-        if ( s )
+        
+        if ( s && asJson )
             jstr << TOKEN_STRING_SEPARATOR;
 
         switch ( this->getType() ) {
@@ -101,7 +108,7 @@ class JsonType : public JsonItem {
 	        	break;
         }
 
-        if ( s )
+        if ( s && asJson )
             jstr << TOKEN_STRING_SEPARATOR;
 
         return jstr.str();
@@ -112,9 +119,19 @@ class JsonType : public JsonItem {
     T    _value;
 };
 
+
+class JsonString : public JsonType<std::string> {
+  public:
+    JsonString ( const std::string & val = std::string(), json_t  t = JSON_STRING )
+        : JsonType<std::string>(val, t)
+    {}
+
+    virtual ~JsonString() {}
+};
+
+
 typedef JsonType<double>      JsonNumber;
 typedef JsonType<bool>        JsonBoolean;
-typedef JsonType<std::string> JsonString;
 
 
 } // namespace

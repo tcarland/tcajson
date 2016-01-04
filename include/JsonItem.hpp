@@ -67,12 +67,14 @@ class JsonItem {
     json_t   getType()      const { return _type; }
     json_t   getValueType() const { return this->getType(); }
 
-    virtual std::string toString() const
+
+    virtual std::string toString ( bool asJson = true ) const
     {
         if ( _type == JSON_NULL )
             return std::string("null");
         return std::string("UNKNOWN");
     }
+
 
   protected:
 

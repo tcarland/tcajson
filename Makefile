@@ -32,7 +32,7 @@ include $(TOPDIR)/tcamake/project_defs
 
 lib: arlib
 
-arlib: lib/libtcatcajson.a
+arlib: lib/libtcajson.a
 
 solib: libtcajson.so.0.2.2
 
