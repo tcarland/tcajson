@@ -35,12 +35,12 @@ namespace tcajson {
 
 /** JsonObject constructor */
 JsonObject::JsonObject()
-    : JsonItem(JSON_OBJECT)
+    : JsonType(JSON_OBJECT)
 {}
 
 /**  JsonObject copy constructor */
 JsonObject::JsonObject ( const JsonObject & obj )
-    : JsonItem(JSON_OBJECT)
+    : JsonType(JSON_OBJECT)
 {
     *this = obj;
 }
@@ -85,9 +85,8 @@ JsonObject::operator= ( const JsonObject & obj )
                 this->insert(jIter->first, new JsonBoolean(*((JsonBoolean*)jIter->second)));
                 break;
             case JSON_NULL:
-                this->insert(jIter->first, new JsonItem(JSON_NULL));
+                this->insert(jIter->first, new JsonType(JSON_NULL));
                 break;
-            case JSON_ITEM:
             case JSON_INVALID:
             default:
                 break;
@@ -99,7 +98,7 @@ JsonObject::operator= ( const JsonObject & obj )
 
 // ------------------------------------------------------------------------- //
 
-JsonItem*
+JsonType*
 JsonObject::operator[] ( const std::string & key ) throw ( JsonException )
 {
     iterator iter;
@@ -109,7 +108,7 @@ JsonObject::operator[] ( const std::string & key ) throw ( JsonException )
     return iter->second;
 }
 
-const JsonItem*
+const JsonType*
 JsonObject::operator[] ( const std::string & key ) const throw ( JsonException )
 {
     const_iterator iter = this->find(key);
@@ -121,7 +120,7 @@ JsonObject::operator[] ( const std::string & key ) const throw ( JsonException )
 // ------------------------------------------------------------------------- //
 
 JsonObject::pairI
-JsonObject::insert ( const std::string & key, JsonItem * item ) throw ( JsonException )
+JsonObject::insert ( const std::string & key, JsonType * item ) throw ( JsonException )
 {
     JsonObject::iterator iter;
 
@@ -206,7 +205,7 @@ JsonObject::toString() const
     for ( jIter = this->begin(); jIter != this->end(); ++jIter, ++i )
     {
         const std::string & key  = jIter->first;
-        const JsonItem    * item = jIter->second;
+        const JsonType    * item = jIter->second;
 
         jstr << TOKEN_STRING_SEPARATOR << key << TOKEN_STRING_SEPARATOR
              << TOKEN_WS << TOKEN_NAME_SEPARATOR << TOKEN_WS

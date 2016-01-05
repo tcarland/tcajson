@@ -27,19 +27,19 @@
 
 #include <deque>
 
-#include "JsonItem.hpp"
 #include "JsonException.hpp"
+#include "JsonType.hpp"
 
 
 namespace tcajson {
 
 
 /** JsonArray represents a one-dimensional array of JsonItems. */
-class JsonArray : public JsonItem {
+class JsonArray : public JsonType {
 
   public:
 
-    typedef std::deque<JsonItem*>      ArrayItems;
+    typedef std::deque<JsonType*>      ArrayItems;
     typedef ArrayItems::iterator       iterator;
     typedef ArrayItems::const_iterator const_iterator;
     typedef ArrayItems::size_type      size_type;
@@ -51,8 +51,8 @@ class JsonArray : public JsonItem {
     virtual ~JsonArray();
 
     JsonArray&      operator=  ( const JsonArray & ary );
-    JsonItem*       operator[] ( size_type index );
-    const JsonItem* operator[] ( size_type index ) const;
+    JsonType*       operator[] ( size_type index );
+    const JsonType* operator[] ( size_type index ) const;
 
     iterator        begin() { return _items.begin(); }
     iterator        end()   { return _items.end(); }
@@ -60,16 +60,16 @@ class JsonArray : public JsonItem {
     const_iterator  begin() const { return _items.begin(); }
     const_iterator  end()   const { return _items.end(); }
 
-    iterator        insert ( JsonItem * item );
-    iterator        insert ( JsonItem * item, iterator at );
+    iterator        insert ( JsonType * item );
+    iterator        insert ( JsonType * item, iterator at );
     iterator        erase  ( iterator at );
 
     size_t          size()  const { return _items.size(); }
     bool            empty() const { return _items.empty(); }
     void            clear();
 
-    JsonItem*       at ( size_type index );
-    const JsonItem* at ( size_type index ) const;
+    JsonType*       at ( size_type index );
+    const JsonType* at ( size_type index ) const;
 
     virtual std::string toString() const;
 

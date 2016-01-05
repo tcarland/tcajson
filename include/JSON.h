@@ -30,11 +30,10 @@
 #include <sstream>
 
 #include "JsonException.hpp"
-#include "JsonItem.hpp"
-#include "JsonType.hpp"
-
 #include "JsonObject.h"
 #include "JsonArray.h"
+#include "JsonItem.hpp"
+#include "JsonType.hpp"
 
 
 namespace tcajson {
@@ -46,7 +45,7 @@ namespace tcajson {
 /* std::ostream support */
 std::ostream& operator<< ( std::ostream & strm, const JsonObject  & obj );
 std::ostream& operator<< ( std::ostream & strm, const JsonArray   & ary );
-std::ostream& operator<< ( std::ostream & strm, const JsonItem    & val );
+std::ostream& operator<< ( std::ostream & strm, const JsonType    & val );
 std::ostream& operator<< ( std::ostream & strm, const JsonNumber  & val );
 std::ostream& operator<< ( std::ostream & strm, const JsonBoolean & val );
 std::ostream& operator<< ( std::ostream & strm, const JsonString  & str );
@@ -93,7 +92,7 @@ class JSON {
     static bool        IsSeparator  ( std::istream   & buf );
     static bool        ValidChar    ( char    c );
     static std::string TypeToString ( json_t  t );
-    static std::string ToString     ( const JsonItem * item, bool asJson = true );
+    static std::string ToString     ( const JsonType * item, bool asJson = true );
     static std::string Version();
 
 
@@ -104,7 +103,7 @@ class JSON {
     bool   parseObject    ( std::istream & buf, JsonObject  & obj );
     bool   parseNumber    ( std::istream & buf, JsonNumber  & num );
     bool   parseBoolean   ( std::istream & buf, JsonBoolean & b );
-    bool   parseLiteral   ( std::istream & buf, JsonItem    & item );
+    bool   parseLiteral   ( std::istream & buf, JsonType    & item );
 
     bool   parseAssign    ( std::istream & buf );
     bool   parseSeparator ( std::istream & buf );

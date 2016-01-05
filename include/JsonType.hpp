@@ -25,113 +25,60 @@
 #ifndef _TCAJSON_JSONTYPE_HPP_
 #define _TCAJSON_JSONTYPE_HPP_
 
-#include <sstream>
-
-#include "JsonItem.hpp"
-#include "JSON.h"
+#include <string>
 
 
 namespace tcajson {
 
 
-/** The JsonType class represents all JSON types that are
-  * not a JsonObject or JsonArray. The base JsonType is
-  * a literal, with the additional types specified as
-  * a boolean, a number, or a string.
- **/
-template <typename T>
-class JsonType : public JsonItem {
+#define TOKEN_ARRAY_BEGIN      '['
+#define TOKEN_ARRAY_END        ']'
+#define TOKEN_OBJECT_BEGIN     '{'
+#define TOKEN_OBJECT_END       '}'
+#define TOKEN_NAME_SEPARATOR   ':'
+#define TOKEN_VALUE_SEPARATOR  ','
+#define TOKEN_STRING_SEPARATOR '"'
+#define TOKEN_WS               ' '
+
+
+/**  The JSON type used to identify JsonItems */
+// TODO: Use JSON_LITERAL instead of bool and null
+typedef enum JsonValueType {
+    JSON_INVALID,
+    JSON_OBJECT,
+    JSON_ARRAY,
+    JSON_NUMBER,
+    JSON_STRING,
+    JSON_BOOL_TRUE,
+    JSON_BOOL_FALSE,
+    JSON_NULL
+} json_t;
+
+
+/**  JsonItem is the base class of all JSON types.  */
+class JsonType {
 
   public:
 
-    JsonType ( const T & val = T(), json_t  t = JSON_ITEM )
-        : JsonItem(t),
-          _value(val)
-    {}
-
+    JsonType ( json_t  t = JSON_NULL ) : _type(t) {}
     virtual ~JsonType() {}
 
+    json_t   getType()      const { return _type; }
+    json_t   getValueType() const { return this->getType(); }
 
-    JsonType<T>& operator=  ( const JsonType<T> & val )
-    {
-        if ( this != &val ) {
-            this->_value = val._value;
-            this->_type  = val._type;
-        }
-        return *this;
-    }
 
-    bool operator== ( const JsonType<T> & val ) const
+    virtual std::string toString ( bool asJson = true ) const
     {
-        return(_value == val._value);
+        if ( _type == JSON_NULL )
+            return std::string("null");
+        return std::string("UNKNOWN");
     }
 
 
-    operator T&() { return this->value(); }
-    operator const T&() const { return this->value(); }
+  protected:
 
-    
-    T& value() { return _value; }
-    const T& value() const { return _value; }
-
-
-    /** Note that the default value for the 'asJson' parameter here 
-      * is false. This only affects JsonString objects which will be 
-      * printed without quotes when using the direct JsonString::toString() 
-      * method. Other 'toString()' functions will default this to true 
-      * so that objects are displayed properly (ie. JsonObject::toString() 
-      * will print all contained JsonStrings in quotes as they should be).
-     **/
-    virtual std::string toString ( bool asJson = false ) const
-    {
-        std::stringstream jstr;
-        bool s = false;
-
-        if ( this->getType() == JSON_STRING )
-            s = true;
-        
-        if ( s && asJson )
-            jstr << TOKEN_STRING_SEPARATOR;
-
-        switch ( this->getType() ) {
-	        case JSON_NULL:
-	        	jstr << "null";
-	        	break;
-	        case JSON_BOOL_TRUE:
-	        	jstr << "true";
-	        	break;
-	        case JSON_BOOL_FALSE:
-	        	jstr << "false";
-	        	break;
-	        default:
-	        	jstr << _value;
-	        	break;
-        }
-
-        if ( s && asJson )
-            jstr << TOKEN_STRING_SEPARATOR;
-
-        return jstr.str();
-    }
-
-  private:
-
-    T    _value;
+    json_t   _type;
 };
-
-
-class JsonString : public JsonType<std::string> {
-  public:
-    JsonString ( const std::string & val = std::string(), json_t  t = JSON_STRING )
-        : JsonType<std::string>(val, t)
-    {}
-
-    virtual ~JsonString() {}
-};
-
-
-typedef JsonType<double>      JsonNumber;
-typedef JsonType<bool>        JsonBoolean;
 
 
 } // namespace

@@ -35,12 +35,12 @@ namespace tcajson {
 
 /**  JsonArray constructor */
 JsonArray::JsonArray()
-    : JsonItem(JSON_ARRAY)
+    : JsonType(JSON_ARRAY)
 {}
 
 /**  JsonArray copy constructor */
 JsonArray::JsonArray ( const JsonArray & ary )
-    : JsonItem(JSON_ARRAY)
+    : JsonType(JSON_ARRAY)
 {
     *this = ary;
 }
@@ -85,9 +85,8 @@ JsonArray::operator= ( const JsonArray & ary )
                 this->insert(new JsonBoolean(*(JsonBoolean*)*jIter));
                 break;
             case JSON_NULL:
-                this->insert(new JsonItem(JSON_NULL));
+                this->insert(new JsonType(JSON_NULL));
                 break;
-            case JSON_ITEM:
             case JSON_INVALID:
             default:
                 break;
@@ -99,14 +98,14 @@ JsonArray::operator= ( const JsonArray & ary )
 
 // ------------------------------------------------------------------------- //
 
-/** Index operator for retrieving a JsonItem at a given location. */
-JsonItem*
+/** Index operator for retrieving a JsonType at a given location. */
+JsonType*
 JsonArray::operator[] ( JsonArray::size_type index )
 {
     return _items[index];
 }
 
-const JsonItem*
+const JsonType*
 JsonArray::operator[] ( JsonArray::size_type index ) const
 {
     return _items[index];
@@ -114,22 +113,22 @@ JsonArray::operator[] ( JsonArray::size_type index ) const
 
 // ------------------------------------------------------------------------- //
 
-/** Inserts the provided JsonItem into the array. */
+/** Inserts the provided JsonType into the array. */
 JsonArray::iterator
-JsonArray::insert ( JsonItem * item )
+JsonArray::insert ( JsonType * item )
 {
     return _items.insert(_items.end(), item);
 }
 
 JsonArray::iterator
-JsonArray::insert ( JsonItem * item, JsonArray::iterator at )
+JsonArray::insert ( JsonType * item, JsonArray::iterator at )
 {
     return _items.insert(at, item);
 }
 
 // ------------------------------------------------------------------------- //
 
-/** Erases the JsonItem at the given iterator position */
+/** Erases the JsonType at the given iterator position */
 JsonArray::iterator
 JsonArray::erase ( JsonArray::iterator at )
 {
@@ -138,14 +137,14 @@ JsonArray::erase ( JsonArray::iterator at )
 
 // ------------------------------------------------------------------------- //
 
-/** Returns the JsonItem at the given index location */
-JsonItem*
+/** Returns the JsonType at the given index location */
+JsonType*
 JsonArray::at ( JsonArray::size_type index )
 {
     return _items.at(index);
 }
 
-const JsonItem*
+const JsonType*
 JsonArray::at ( JsonArray::size_type index ) const
 {
     return _items.at(index);
@@ -181,7 +180,7 @@ JsonArray::toString() const
     jstr << TOKEN_ARRAY_BEGIN << TOKEN_WS;
 
     for ( jIter = this->begin(); jIter != this->end(); ++jIter, ++i ) {
-        const JsonItem * item = *jIter;
+        const JsonType * item = *jIter;
         jstr << JSON::ToString(item);
         if ( i  < this->size() )
             jstr << TOKEN_VALUE_SEPARATOR << TOKEN_WS;

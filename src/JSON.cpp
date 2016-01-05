@@ -48,7 +48,7 @@ operator<< ( std::ostream & strm, const JsonArray & ary )
 }
 
 std::ostream&
-operator<< ( std::ostream & strm, const JsonItem & val )
+operator<< ( std::ostream & strm, const JsonType & val )
 {
     strm << val.toString(true);
     return strm;
@@ -177,7 +177,7 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
     JsonArray      jary;
     JsonNumber     jnum;
     JsonBoolean    jbool;
-    JsonItem       jnul(JSON_NULL);
+    JsonType       jnul(JSON_NULL);
     JsonString     jstr, jval;
     JsonValueType  t;
     std::string    key;
@@ -251,7 +251,7 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
                 break;
             case JSON_NULL:
                 if ( this->parseLiteral(buf, jnul) ) {
-                    obj.insert(key, new JsonItem(jnul));
+                    obj.insert(key, new JsonType(jnul));
                     key.clear();
                     p = true;
                 }
@@ -285,7 +285,7 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
     JsonNumber    jnum;
     JsonBoolean   jbool;
     JsonString    jstr;
-    JsonItem      jnul(JSON_NULL);
+    JsonType      jnul(JSON_NULL);
     JsonValueType t;
 
     while ( ! buf.eof() )
@@ -342,7 +342,7 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
                 break;
             case JSON_NULL:
                 if ( this->parseLiteral(buf, jnul) ) {
-                    ary.insert(new JsonItem(jnul));
+                    ary.insert(new JsonType(jnul));
                     p = true;
                 }
                 break;
@@ -497,7 +497,7 @@ JSON::parseBoolean ( std::istream & buf, JsonBoolean & b )
 
 /** Method for parsing a JSON Literal */
 bool
-JSON::parseLiteral ( std::istream & buf, JsonItem & item )
+JSON::parseLiteral ( std::istream & buf, JsonType & item )
 {
     std::string token;
     char  c;
@@ -667,9 +667,6 @@ JSON::TypeToString ( json_t t )
     std::string name;
 
     switch ( t ) {
-        case JSON_ITEM:
-            name.assign("Unknown");
-            break;
         case JSON_OBJECT:
             name.assign("JSON Object");
             break;
@@ -696,18 +693,16 @@ JSON::TypeToString ( json_t t )
     return name;
 }
 
-/**  Converts the provided JsonItem to a readable string. Note that
+/**  Converts the provided JsonType to a readable string. Note that
   *  by default all items are formatted as JSON, so strings will
   *  returned in quotes. Set the 'asJson' boolean to false to obtain
   *  bare strings */
 std::string
-JSON::ToString ( const JsonItem * item, bool asJson )
+JSON::ToString ( const JsonType * item, bool asJson )
 {
     json_t  t = item->getType();
 
-    if ( t == JSON_ITEM ) {
-        return item->toString(asJson);
-    } else if ( t == JSON_OBJECT ) {
+    if ( t == JSON_OBJECT ) {
         const JsonObject * obj = (const JsonObject*) item;
         return obj->toString();
     } else if ( t == JSON_ARRAY ) {

@@ -1,5 +1,5 @@
 /**
-  * @file JsonItem.hpp
+  * @file JsonLiteral.hpp
   *
   * Copyright (c) 2012,2013 Timothy Charlton Arland
   * @author  tcarland@gmail.com
@@ -22,67 +22,136 @@
   * License along with tcajson.
   * If not, see <http://www.gnu.org/licenses/>.
 **/
-#ifndef _TCAJSON_JSONITEM_HPP_
-#define _TCAJSON_JSONITEM_HPP_
+#ifndef _TCAJSON_JSONLITERAL_HPP_
+#define _TCAJSON_JSONLITERAL_HPP_
 
-#include <string>
+#include <sstream>
+
+#include "JsonType.hpp"
+#include "JSON.h"
 
 
 namespace tcajson {
 
 
-#define TOKEN_ARRAY_BEGIN      '['
-#define TOKEN_ARRAY_END        ']'
-#define TOKEN_OBJECT_BEGIN     '{'
-#define TOKEN_OBJECT_END       '}'
-#define TOKEN_NAME_SEPARATOR   ':'
-#define TOKEN_VALUE_SEPARATOR  ','
-#define TOKEN_STRING_SEPARATOR '"'
-#define TOKEN_WS               ' '
-
-
-/**  The JSON type used to identify JsonItems */
-// TODO: Use JSON_LITERAL instead of bool and null
-typedef enum JsonValueType {
-    JSON_INVALID,
-    JSON_ITEM,
-    JSON_OBJECT,
-    JSON_ARRAY,
-    JSON_NUMBER,
-    JSON_STRING,
-    JSON_BOOL_TRUE,
-    JSON_BOOL_FALSE,
-    JSON_NULL
-} json_t;
-
-
-/**  JsonItem is the base class of all JSON types.  */
-class JsonItem {
+/** The JsonLiteral class represents all JSON types that are
+  * not a JsonObject or JsonArray. JsonString and JsonNumber
+  * which are technically not defined as literals, extend this
+  * class since they are similar entities with only strings 
+  * requiring a bit of specialization.
+ **/
+template <typename T>
+class JsonLiteral : public JsonType {
 
   public:
 
-    JsonItem ( json_t  t = JSON_ITEM ) : _type(t) {}
-    virtual ~JsonItem() {}
+    JsonLiteral ( const T & val = T(), json_t  t = JSON_NULL )
+        : JsonType(t),
+          _value(val)
+    {}
 
-    json_t   getType()      const { return _type; }
-    json_t   getValueType() const { return this->getType(); }
+    virtual ~JsonLiteral() {}
 
 
-    virtual std::string toString ( bool asJson = true ) const
+    JsonLiteral<T>&  operator=  ( const JsonLiteral<T> & val )
     {
-        if ( _type == JSON_NULL )
-            return std::string("null");
-        return std::string("UNKNOWN");
+        if ( this != &val ) {
+            this->_value = val._value;
+            this->_type  = val._type;
+        }
+        return *this;
+    }
+
+    bool operator== ( const JsonLiteral<T> & val ) const
+    {
+        return(_value == val._value);
     }
 
 
-  protected:
+    operator T&() { return this->value(); }
+    operator const T&() const { return this->value(); }
 
-    json_t   _type;
+    
+    T& value() { return _value; }
+    const T& value() const { return _value; }
+
+    virtual std::string toString ( bool asJson = true ) const
+    {
+        std::stringstream jstr;
+
+        switch ( this->getType() ) {
+            case JSON_NULL:
+                jstr << "null";
+                break;
+            case JSON_BOOL_TRUE:
+                jstr << "true";
+                break;
+            case JSON_BOOL_FALSE:
+                jstr << "false";
+                break;
+            default:
+                break;
+        }
+
+        return jstr.str();
+    }
+
+  private:
+
+    T    _value;
+};
+
+
+/** The JsonString class reprents all of our JSON string objects.
+  * Note that the default value for the toString() 'asJson' parameter  
+  * here is false. This only affects JsonString objects which will be 
+  * printed without quotes when using the direct JsonString::toString() 
+  * method. Other 'toString()' functions will default this to true 
+  * so that objects are displayed properly (ie. JsonObject::toString() 
+  * will print all contained JsonStrings in quotes as they should be).
+ **/
+class JsonString : public JsonLiteral<std::string> {
+  public:
+    JsonString ( const std::string & val = std::string(), json_t  t = JSON_STRING )
+        : JsonLiteral<std::string>(val, t)
+    {}
+
+    virtual ~JsonString() {}
+
+    virtual std::string  toString ( bool asJson = false ) const
+    {
+        std::stringstream jstr;
+
+        if ( asJson )
+            jstr << TOKEN_STRING_SEPARATOR;
+        jstr << this->value();
+        if ( asJson )
+            jstr << TOKEN_STRING_SEPARATOR;
+
+        return jstr.str();
+    }
+};
+
+
+class JsonNumber : public JsonLiteral<double> {
+  public:
+    JsonNumber ( double val = 0.0, json_t t = JSON_NUMBER )
+        : JsonLiteral<double>(val, t)
+    {}
+    virtual ~JsonNumber() {}
+};
+
+
+class JsonBoolean : public JsonLiteral<bool> {
+  public:
+    JsonBoolean ( bool val = false, json_t t = JSON_BOOL_FALSE )
+        : JsonLiteral<bool>(val, t)
+    {}
+    virtual ~JsonBoolean() {}
 };
 
 
 } // namespace
 
-#endif // _TCAJSON_JSONITEM_HPP_
+#endif // _TCAJSON_JSONLITERAL_HPP_
 

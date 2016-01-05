@@ -28,8 +28,8 @@
 #include <map>
 #include <iterator>
 
-#include "JsonItem.hpp"
 #include "JsonException.hpp"
+#include "JsonType.hpp"
 
 
 namespace tcajson {
@@ -39,11 +39,11 @@ namespace tcajson {
   * an associative array. The STL map container is used
   * as the underlying container.
  **/
-class JsonObject : public JsonItem {
+class JsonObject : public JsonType {
 
   public:
 
-    typedef std::map<std::string, JsonItem*> JsonItems;
+    typedef std::map<std::string, JsonType*> JsonItems;
     typedef JsonItems::iterator              iterator;
     typedef JsonItems::const_iterator        const_iterator;
     typedef std::pair<iterator, bool>        pairI;
@@ -58,13 +58,13 @@ class JsonObject : public JsonItem {
 
     JsonObject&     operator=  ( const JsonObject  & obj );
 
-    JsonItem*       operator[] ( const std::string & key ) 
+    JsonType*       operator[] ( const std::string & key )
                         throw ( JsonException );
 
-    const JsonItem* operator[] ( const std::string & key ) const
+    const JsonType* operator[] ( const std::string & key ) const
                         throw ( JsonException );
 
-    pairI           insert ( const std::string & key, JsonItem * item )
+    pairI           insert ( const std::string & key, JsonType * item )
                         throw ( JsonException );
 
     iterator        begin() { return _items.begin(); }
