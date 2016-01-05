@@ -90,6 +90,7 @@ class JsonLiteral : public JsonType {
                 jstr << "false";
                 break;
             default:
+                jstr << _value;
                 break;
         }
 

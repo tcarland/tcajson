@@ -30,16 +30,17 @@
 #include <sstream>
 
 #include "JsonException.hpp"
+
+#include "JsonType.hpp"
+#include "JsonLiteral.hpp"
 #include "JsonObject.h"
 #include "JsonArray.h"
-#include "JsonItem.hpp"
-#include "JsonType.hpp"
 
 
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.3.1"
+#define TCAJSON_VERSION     "0.4.4"
 
 
 /* std::ostream support */

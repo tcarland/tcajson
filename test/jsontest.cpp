@@ -39,7 +39,7 @@ int main ( int argc, char **argv )
     for ( jIter = root.begin(); jIter != root.end(); ++jIter )
     {
         const std::string & key  = jIter->first;
-        JsonItem          * item = jIter->second;
+        JsonType          * item = jIter->second;
 
         std::cout << key << " : " << JSON::TypeToString(item->getType())
             << std::endl;
