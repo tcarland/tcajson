@@ -5,7 +5,7 @@ tcajson
  tca@charltontechnology.net
 
 
-###LICENSE
+### LICENSE
   
  **tcajson** is free software: you can redistribute it and/or modify
  it under the terms of the GNU Lesser General Public License as 
@@ -21,7 +21,7 @@ tcajson
  License along with **tcajson**.    
  If not, see <http://www.gnu.org/licenses/>.  
   
-###Overview:
+### Overview:
 
   The **tcajson**' library is a C++ library implementation of the JSON 
 standard, RFC 4627 (www.ietf.org/rfc/rfc4627.txt). JSON, or 
@@ -35,9 +35,7 @@ the library, or not liking the licensing scheme for the
 given library or both.   
 
 
-
 ### API
-
 
   * **JSON**  
   The **JSON** class is the primary interface for parsing JSON documents.  
@@ -56,8 +54,14 @@ given library or both.
   * **JsonObject**
   The core JSON type of an associative array.
 
+#### Building the Library
+ To build the library, first download the tcamake package via git. After this, a simple 'make' will build the library.
+```
+git clone https://github.com/tcarland/tcamake
+```
 
-#### Examples
+
+####Examples
 
 
 ```
