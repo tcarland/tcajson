@@ -40,7 +40,7 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.4.4"
+#define TCAJSON_VERSION     "0.4.5"
 
 
 /* std::ostream support */

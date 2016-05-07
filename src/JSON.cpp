@@ -382,6 +382,8 @@ JSON::parseString ( std::istream & buf, JsonString & str )
             } else {
                 start = true;
                 c = buf.get();
+                if ( c == TOKEN_STRING_SEPARATOR )
+                    stop = true;  // empty string
             }
         }
 

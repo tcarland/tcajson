@@ -1,6 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# Gentoo ebuild
 
 EAPI=4
 
@@ -19,14 +17,14 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	emake solib || die "Make failed"
+    emake solib || die "Make failed"
 }
 
 src_install() {
-	insinto /usr/lib
-	dolib.so lib/tcajson.so.${PVR} || die "File copy failed"
-	dolib.so lib/tcajson.so || die "File copy failed"
-	insinto /usr/include/tcajson
-	doins include/* || die "File copy failed"
+    insinto /usr/lib
+    dolib.so lib/tcajson.so.${PVR} || die "File copy failed"
+    dolib.so lib/tcajson.so || die "File copy failed"
+    insinto /usr/include/tcajson
+    doins include/* || die "File copy failed"
 }
 
