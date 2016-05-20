@@ -175,6 +175,17 @@ JsonObject::find ( const std::string & key ) const
     return _items.find(key);
 }
 
+bool
+JsonObject::exists ( const std::string & key ) const
+{
+    JsonObject::const_iterator iter;
+
+    if ( (iter = this->find(key)) != this->end() )
+        return true;
+
+    return false;
+}
+
 // ------------------------------------------------------------------------- //
 
 /** Clears all items from the JsonObject. */

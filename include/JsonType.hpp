@@ -41,7 +41,7 @@ namespace tcajson {
 #define TOKEN_WS               ' '
 
 
-/**  The JSON type used to identify JsonItems */
+/**  The JsonValueType or json_t used to identify Json types */
 // TODO: Use JSON_LITERAL instead of bool and null
 typedef enum JsonValueType {
     JSON_INVALID,
@@ -55,7 +55,7 @@ typedef enum JsonValueType {
 } json_t;
 
 
-/**  JsonItem is the base class of all JSON types.  */
+/**  JsonType is the abstract base class of all JSON types.  */
 class JsonType {
 
   public:

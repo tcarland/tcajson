@@ -40,8 +40,8 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.4.5"
-
+#define TCAJSON_VERSION     "0.4.6"
+#define TCAJSON_ERRSTRLEN   15
 
 /* std::ostream support */
 std::ostream& operator<< ( std::ostream & strm, const JsonObject  & obj );
@@ -68,8 +68,8 @@ class JSON {
 
     JSON& operator= ( const JSON & json );
 
-    bool  parse   ( const std::string & str );
-    bool  parse   ( std::istream      & buf );
+    bool  parse     ( const std::string & str );
+    bool  parse     ( std::istream      & buf );
     void  clear();
 
     JsonObject& getJSON() { return this->_root; }
@@ -82,7 +82,7 @@ class JSON {
   public: 
 
     template<typename T>
-    static T    FromString ( const std::string & str )
+    static T  FromString ( const std::string & str )
     {
         T  target = T();
         std::stringstream strm(str);
@@ -117,6 +117,7 @@ class JSON {
 
     JsonObject          _root;
     std::ios::pos_type  _errpos;
+    std::ios::pos_type  _errlen;
     std::string         _errstr;
     
 };

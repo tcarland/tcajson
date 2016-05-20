@@ -125,7 +125,9 @@ class JsonString : public JsonLiteral<std::string> {
 
         if ( asJson )
             jstr << TOKEN_STRING_SEPARATOR;
+
         jstr << this->value();
+
         if ( asJson )
             jstr << TOKEN_STRING_SEPARATOR;
 

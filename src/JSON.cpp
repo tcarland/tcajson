@@ -83,7 +83,8 @@ operator<< ( std::ostream & strm, const JsonString & str )
   *  invalid JSON.
  **/
 JSON::JSON ( const std::string & str ) throw ( JsonException )
-    : _errpos(0)
+    : _errpos(0),
+      _errlen(TCAJSON_ERRSTRLEN)
 {
     if ( ! str.empty() && ! this->parse(str) )
         throw ( JsonException("Error parsing string to json") );
@@ -91,7 +92,8 @@ JSON::JSON ( const std::string & str ) throw ( JsonException )
 
 /**  JSON copy constructor */
 JSON::JSON ( const JSON & json )
-    : _errpos(0)
+    : _errpos(0),
+      _errlen(TCAJSON_ERRSTRLEN)
 {
     *this = json;
 }
@@ -109,6 +111,7 @@ JSON::operator= ( const JSON & json )
         this->_root.clear();
         this->_root   = json._root;
         this->_errpos = json._errpos;
+        this->_errlen = json._errlen;
         this->_errstr = json._errstr;
     }
 
@@ -647,7 +650,7 @@ JSON::setError ( std::istream & buf )
     std::ios::pos_type pos;
 
     _errpos  = buf.tellg();
-    pos      = 15;
+    pos      = 5;
     _errstr.clear();
 
     if ( _errpos < pos )
@@ -655,7 +658,7 @@ JSON::setError ( std::istream & buf )
     else
         buf.seekg(_errpos - pos);
 
-    while ( ! buf.eof() && buf.tellg() < (_errpos + ((std::ios::pos_type)5)) )
+    while ( ! buf.eof() && buf.tellg() < (_errpos + _errlen) )
         _errstr.push_back(buf.get());
 
     return;

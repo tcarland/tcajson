@@ -79,6 +79,7 @@ class JsonObject : public JsonType {
 
     iterator        find   ( const std::string & key );
     const_iterator  find   ( const std::string & key ) const;
+    bool            exists ( const std::string & key ) const;
  
     size_t          size()  const { return _items.size(); }
     bool            empty() const { return _items.empty(); }
