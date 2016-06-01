@@ -154,7 +154,7 @@ class JsonInteger : public JsonLiteral<int> {
     JsonInteger ( int val = 0, json_t t = JSON_NUMBER )
         : JsonLiteral<int>(val, t)
     {}
-    virtual ~JsonNumber() {}
+    virtual ~JsonInteger() {}
 };
 
 
@@ -163,7 +163,7 @@ class JsonLong : public JsonLiteral<long> {
     JsonLong ( long val = 0, json_t t = JSON_NUMBER )
         : JsonLiteral<long>(val, t)
     {}
-    virtual ~JsonNumber() {}
+    virtual ~JsonLong() {}
 };
 
 
