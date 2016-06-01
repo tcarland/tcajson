@@ -40,8 +40,8 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.4.6"
-#define TCAJSON_ERRSTRLEN   15
+#define TCAJSON_VERSION     "0.4.7"
+#define TCAJSON_ERRSTRLEN   18
 
 /* std::ostream support */
 std::ostream& operator<< ( std::ostream & strm, const JsonObject  & obj );

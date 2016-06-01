@@ -105,11 +105,11 @@ class JsonLiteral : public JsonType {
 
 /** The JsonString class reprents all of our JSON string objects.
   * Note that the default value for the toString() 'asJson' parameter  
-  * here is false. This only affects JsonString objects which will be 
-  * printed without quotes when using the direct JsonString::toString() 
-  * method. Other 'toString()' functions will default this to true 
-  * so that objects are displayed properly (ie. JsonObject::toString() 
-  * will print all contained JsonStrings in quotes as they should be).
+  * here is false.  Calling ::toString() directly on a JsonString 
+  * defaults the behavior to returning only the string value with no
+  * quotes.  The toString() method of a JsonObject will explitly call
+  * this method with 'asJson' as true to ensure that the resulting 
+  * output is properly formatted JSON.
  **/
 class JsonString : public JsonLiteral<std::string> {
   public:
@@ -136,10 +136,32 @@ class JsonString : public JsonLiteral<std::string> {
 };
 
 
+/**  The JsonNumber class represents a number as a double. We use a double as 
+  *  a catch all type that can support any number format, though
+  *  specializations for JsonInteger and JsonLong allow for more specific types.
+ **/
 class JsonNumber : public JsonLiteral<double> {
   public:
     JsonNumber ( double val = 0.0, json_t t = JSON_NUMBER )
         : JsonLiteral<double>(val, t)
+    {}
+    virtual ~JsonNumber() {}
+};
+
+
+class JsonInteger : public JsonLiteral<int> {
+  public:
+    JsonInteger ( int val = 0, json_t t = JSON_NUMBER )
+        : JsonLiteral<int>(val, t)
+    {}
+    virtual ~JsonNumber() {}
+};
+
+
+class JsonLong : public JsonLiteral<long> {
+  public:
+    JsonLong ( long val = 0, json_t t = JSON_NUMBER )
+        : JsonLiteral<long>(val, t)
     {}
     virtual ~JsonNumber() {}
 };
