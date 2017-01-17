@@ -1,10 +1,6 @@
 # Makefile
 #
-ifdef TCAMAKE_PROJECT
-    TOPDIR = ../..
-else
-    TOPDIR = .
-endif
+TOPDIR = ..
 
 # set requirements
 NEED_SOCKET = 1
