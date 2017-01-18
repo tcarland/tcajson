@@ -5,7 +5,7 @@ TOPDIR = ..
 # set requirements
 NEED_SOCKET = 1
 
-ifdef TNMS_DEBUG
+ifdef TCAMAKE_DEBUG
 OPT_FLAGS= 	-g
 endif
 
@@ -75,6 +75,6 @@ distclean: clean libclean testclean doc-clean
 	@echo
 
 install:
-ifdef TNMS_PREFIX
+ifdef TCAMAKE_PREFIX
 	@echo
 endif
