@@ -29,8 +29,8 @@ include $(TOPDIR)/tcamake/project_defs
 lib: arlib
 
 arlib: lib/libtcajson.a
-
 solib: libtcajson.so.0.4.7
+
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
@@ -76,5 +76,14 @@ distclean: clean libclean testclean doc-clean
 
 install:
 ifdef TCAMAKE_PREFIX
+	@echo "Installing tcajson to $(TCAMAKE_PREFIX)/{include,lib}"
+	$(MKDIR) $(TCAMAKE_PREFIX)/include/tcajson
+	$(MKDIR) $(TCAMAKE_PREFIX)/lib
+	$(RSYNC) --delete include/ $(TCAMAKE_PREFIX)/include/tcajson/
+	$(RSYNC) lib/ $(TCAMAKE_PREFIX)/lib/
 	@echo
+else
+	@echo "TCAMAKE_PREFIX is not set. Install not performed"
+	@echo "  eg. export TCAMAKE_PREFIX=/usr/local"
 endif
+

@@ -1,21 +1,9 @@
 # Makefile
 #
 
-# TOPDIR is the relative path to our workspace root
-# where /tcamake should exist.
-#
-# The following ifdef is used for extracting the Makefile 
-# into a standalone project. See 'build.sh' for extracting
-# solo distributions.  In most cases this is not necessary, 
-# simply set TOPDIR to the relative root and compile.
-ifdef TCAMAKE_PROJECT
-    TOPDIR = ../../..
-else
-    TOPDIR = ..
-endif
+TOPDIR = ../..
 
-
-ifdef TNMS_DEBUG
+ifdef TCAMAKE_DEBUG
 OPT_FLAGS= 	-g
 endif
 
@@ -53,6 +41,6 @@ distclean: clean
 	@echo
 
 install:
-ifdef TNMS_PREFIX
+ifdef TCAMAKE_PREFIX
 	@echo
 endif
