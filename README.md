@@ -54,15 +54,16 @@ given library or both.
   * **JsonObject**
   The core JSON type of an associative array.
 
+
 #### Building the Library
- To build the library, first download the tcamake package via git. After this, a simple 'make' will build the library.
+ To build the library, first download the tcamake package via git. After this, a simple 'make' will build the library. By default, the Makefile looks for tcamake in '..'
 ```
-git clone https://github.com/tcarland/tcamake
+cd ..
+git clone https://github.com/tcarland/tcamake.git
 ```
 
 
-####Examples
-
+#### Examples
 
 ```
 #include <string>
@@ -96,7 +97,7 @@ int main() {
 }
 ```
 
-The result JSON string output:
+The resulting JSON string output:
 
 ```
 $./jsoncreate
