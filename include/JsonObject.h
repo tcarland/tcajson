@@ -73,8 +73,8 @@ class JsonObject : public JsonType {
     const_iterator  begin() const { return _items.begin(); }
     const_iterator  end()   const { return _items.end(); }
 
-    void            erase  ( iterator at );
-    void            erase  ( iterator first, iterator last );
+    iterator        erase  ( iterator at );
+    iterator        erase  ( iterator first, iterator last );
     size_type       erase  ( const std::string & key );
 
     iterator        find   ( const std::string & key );

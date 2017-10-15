@@ -29,7 +29,7 @@ include $(TOPDIR)/tcamake/project_defs
 lib: arlib
 
 arlib: lib/libtcajson.a
-solib: libtcajson.so.0.4.8
+solib: libtcajson.so.0.4.9
 
 
 lib/libtcajson.a: $(OBJS)
@@ -37,7 +37,7 @@ lib/libtcajson.a: $(OBJS)
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.0.4.8: $(OBJS)
+libtcajson.so.0.4.9: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)

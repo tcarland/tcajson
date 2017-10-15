@@ -133,24 +133,26 @@ JsonObject::insert ( const std::string & key, JsonType * item ) throw ( JsonExce
 // ------------------------------------------------------------------------- //
 
 /** Erases the key/value pair at the given iterator position(s). */
-void
+JsonObject::iterator
 JsonObject::erase ( JsonObject::iterator at )
 {
     if ( at == _items.end() )
-        return;
+        return _items.end();
     if ( at->second )
         delete at->second;
     return _items.erase(at);
 }
 
-void
+JsonObject::iterator
 JsonObject::erase ( JsonObject::iterator first, JsonObject::iterator last )
 {
     JsonObject::iterator iter;
+
     for ( iter = first; iter != last; ++iter ) {
         if ( iter->second )
             delete iter->second;
     }
+
     return _items.erase(first, last);
 }
 
