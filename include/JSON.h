@@ -29,8 +29,6 @@
 #include <ostream>
 #include <sstream>
 
-#include "JsonException.hpp"
-
 #include "JsonType.hpp"
 #include "JsonLiteral.hpp"
 #include "JsonObject.h"
@@ -40,7 +38,7 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.4.9"
+#define TCAJSON_VERSION     "0.5.0"
 #define TCAJSON_ERRSTRLEN   18
 
 /* std::ostream support */
@@ -60,11 +58,11 @@ class JSON {
 
   public:
 
-    JSON  ( const std::string & str = "" ) throw ( JsonException );
+    JSON  ( const std::string & str = "" ) noexcept(false);
     JSON  ( std::istream      & buf );
     JSON  ( const JSON        & json );
 
-    ~JSON() throw();
+    ~JSON();
 
     JSON& operator= ( const JSON & json );
 

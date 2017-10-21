@@ -27,6 +27,8 @@
 #include "JsonObject.h"
 #include "JSON.h"
 
+#include <stdexcept>
+
 
 namespace tcajson {
 
@@ -45,7 +47,7 @@ JsonObject::JsonObject ( const JsonObject & obj )
     *this = obj;
 }
 
-JsonObject::~JsonObject() throw ()
+JsonObject::~JsonObject()
 {
     this->clear();
 }
@@ -99,33 +101,33 @@ JsonObject::operator= ( const JsonObject & obj )
 // ------------------------------------------------------------------------- //
 
 JsonType*
-JsonObject::operator[] ( const std::string & key ) throw ( JsonException )
+JsonObject::operator[] ( const std::string & key )
 {
     iterator iter;
     
     if ( (iter = this->find(key)) == _items.end() )
-        throw ( JsonException("JSONObject error, object key not found") );
+        return NULL;
     return iter->second;
 }
 
 const JsonType*
-JsonObject::operator[] ( const std::string & key ) const throw ( JsonException )
+JsonObject::operator[] ( const std::string & key ) const
 {
     const_iterator iter = this->find(key);
     if ( iter == _items.end() )
-        throw ( JsonException("JSONObject error, object key not found") );
+        return NULL;
     return iter->second;
 }
 
 // ------------------------------------------------------------------------- //
 
 JsonObject::pairI
-JsonObject::insert ( const std::string & key, JsonType * item ) throw ( JsonException )
+JsonObject::insert ( const std::string & key, JsonType * item )
 {
     JsonObject::iterator iter;
 
     if ( (iter = this->find(key)) != _items.end() )
-        throw ( JsonException("JsonObject::insert() Item already exists: " + key ) );
+        throw ( std::runtime_error("JsonObject::insert() Item already exists: " + key ) );
     
     return _items.insert(JsonItems::value_type(key, item));
 }

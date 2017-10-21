@@ -25,6 +25,7 @@
 #define _TCAJSON_JSON_CPP_
 
 #include <set>
+#include <stdexcept>
 
 #include "JSON.h"
 
@@ -79,15 +80,15 @@ operator<< ( std::ostream & strm, const JsonString & str )
 
 /**  Constructor for the JSON parser class. If a non-empty string
   *  is provided, the constructor will attempt to parse the string
-  *  and potentially throw a JsonException if the string contains
+  *  and potentially throw an exception if the string contains
   *  invalid JSON.
  **/
-JSON::JSON ( const std::string & str ) throw ( JsonException )
+JSON::JSON ( const std::string & str )
     : _errpos(0),
       _errlen(TCAJSON_ERRSTRLEN)
 {
     if ( ! str.empty() && ! this->parse(str) )
-        throw ( JsonException("Error parsing string to json") );
+        throw ( std::runtime_error("Error parsing string to json") );
 }
 
 /**  JSON copy constructor */
@@ -99,7 +100,7 @@ JSON::JSON ( const JSON & json )
 }
 
 /**  JSON destructor */
-JSON::~JSON() throw()
+JSON::~JSON()
 {}
 
 

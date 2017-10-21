@@ -28,7 +28,6 @@
 #include <map>
 #include <iterator>
 
-#include "JsonException.hpp"
 #include "JsonType.hpp"
 
 
@@ -54,18 +53,14 @@ class JsonObject : public JsonType {
     JsonObject();
     JsonObject ( const JsonObject & obj );
 
-    virtual ~JsonObject() throw ();
+    virtual ~JsonObject();
 
     JsonObject&     operator=  ( const JsonObject  & obj );
-
-    JsonType*       operator[] ( const std::string & key )
-                        throw ( JsonException );
-
-    const JsonType* operator[] ( const std::string & key ) const
-                        throw ( JsonException );
+    JsonType*       operator[] ( const std::string & key );
+    const JsonType* operator[] ( const std::string & key ) const;
 
     pairI           insert ( const std::string & key, JsonType * item )
-                        throw ( JsonException );
+                      noexcept(false);
 
     iterator        begin() { return _items.begin(); }
     iterator        end()   { return _items.end(); }
