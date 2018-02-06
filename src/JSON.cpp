@@ -1,7 +1,7 @@
 /**
   * @file JSON.cpp
   *
-  * Copyright (c) 2012,2013 Timothy Charlton Arland
+  * Copyright (c) 2012-2018 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -91,7 +91,7 @@ JSON::JSON ( const std::string & str )
         throw ( std::runtime_error("Error parsing string to json") );
 }
 
-/**  JSON copy constructor */
+/**  The JSON copy constructor */
 JSON::JSON ( const JSON & json )
     : _errpos(0),
       _errlen(TCAJSON_ERRSTRLEN)
@@ -119,7 +119,7 @@ JSON::operator= ( const JSON & json )
     return *this;
 }
 
-/** Erases the current JSON document */
+/** Erases the current JSON document, clearing this object */
 void
 JSON::clear()
 {
@@ -129,7 +129,7 @@ JSON::clear()
 /** Parses the given string into a JsonObject.
   * Returns a boolean indicating whether the parsing of the
   * string was successful. The root JsonObject representing
-  * the document can be retrieved via the getJSON() method.
+  * the JSON document can be retrieved via the getJSON() method.
  **/
 bool
 JSON::parse ( const std::string & str )
@@ -211,9 +211,9 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
         }
 
         // val
-        t = this->parseValueType(buf);
+        t = JSON::ParseValueType(buf);
 
-        switch ( t ) 
+        switch ( t )
         {
             case JSON_OBJECT:
                 if ( this->parseObject(buf, jobj) ) {
@@ -245,8 +245,7 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
                     p = true;
                 }
                 break;
-            case JSON_BOOL_TRUE:
-            case JSON_BOOL_FALSE:
+            case JSON_BOOLEAN:
                 if ( this->parseBoolean(buf, jbool) ) {
                     obj.insert(key, new JsonBoolean(jbool));
                     key.clear();
@@ -264,7 +263,7 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
             default:
                 return false;
         }
-    
+
         if ( ! p || ! this->parseSeparator(buf) )
             return false;
     }
@@ -272,7 +271,7 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
     return p;
 }
 
-/** Recursive method for parsing the JSON Array type within
+/** Recursive method for parsing the JSON Array type from
   * the given input stream.
  **/
 bool
@@ -305,11 +304,11 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
             buf.get();
             break;
         }
-        
+
         p = false;
-        t = this->parseValueType(buf);
-        
-        switch ( t ) 
+        t = JSON::ParseValueType(buf);
+
+        switch ( t )
         {
             case JSON_OBJECT:
                 if ( this->parseObject(buf, jobj) ) {
@@ -337,8 +336,7 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
                     p = true;
                 }
                 break;
-            case JSON_BOOL_TRUE:
-            case JSON_BOOL_FALSE:
+            case JSON_BOOLEAN:
                 if ( this->parseBoolean(buf, jbool) ) {
                     ary.insert(new JsonBoolean(jbool));
                     p = true;
@@ -355,7 +353,7 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
                 this->setError(buf);
                 return false;
         }
-    
+
         if ( ! p || ! this->parseSeparator(buf) )
             return false;
     }
@@ -363,7 +361,7 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
     return true;
 }
 
-/** Method for parsing a JSON String type */
+/** Private method for parsing a JSON String type */
 bool
 JSON::parseString ( std::istream & buf, JsonString & str )
 {
@@ -402,7 +400,7 @@ JSON::parseString ( std::istream & buf, JsonString & str )
         if ( c == '\\' )
         {
             c = buf.get();
-            switch ( c ) 
+            switch ( c )
             {
                 case '"':
                 case '/':
@@ -429,8 +427,8 @@ JSON::parseString ( std::istream & buf, JsonString & str )
                     return false;
                     break;
             }
-        } 
-        else 
+        }
+        else
         {
             sstr.push_back(c);
         }
@@ -441,7 +439,7 @@ JSON::parseString ( std::istream & buf, JsonString & str )
     return true;
 }
 
-/** Method for parsing a JSON Number type */
+/** Priavate method for parsing a JSON Number type */
 bool
 JSON::parseNumber ( std::istream & buf, JsonNumber & num )
 {
@@ -468,7 +466,7 @@ JSON::parseNumber ( std::istream & buf, JsonNumber & num )
     return true;
 }
 
-/** Method for parsing a JSON Boolean literal type */
+/** Private method for parsing a JSON Boolean literal type */
 bool
 JSON::parseBoolean ( std::istream & buf, JsonBoolean & b )
 {
@@ -487,12 +485,12 @@ JSON::parseBoolean ( std::istream & buf, JsonBoolean & b )
     }
 
     if ( token.compare("true") == 0 ) {
-        b = JsonBoolean(true, JSON_BOOL_TRUE);
+        b = JsonBoolean(true, JSON_BOOLEAN);
         return true;
     }
 
     if ( token.compare("false") == 0 ) {
-        b = JsonBoolean(false, JSON_BOOL_FALSE);
+        b = JsonBoolean(false, JSON_BOOLEAN);
         return true;
     }
 
@@ -501,7 +499,7 @@ JSON::parseBoolean ( std::istream & buf, JsonBoolean & b )
     return false;
 }
 
-/** Method for parsing a JSON Literal */
+/** Private method for parsing a JSON Literal */
 bool
 JSON::parseLiteral ( std::istream & buf, JsonType & item )
 {
@@ -521,13 +519,13 @@ JSON::parseLiteral ( std::istream & buf, JsonType & item )
 
     if ( item.getType() == JSON_NULL && token.compare("null") == 0 )
         return true;
-    
+
     this->setError(buf);
 
     return false;
 }
 
-/** Method for parsing the JSON name assignment operator.
+/** Private method for parsing the JSON name assignment operator.
   * Retrieves the name separator token from the stream
   * and return true if the character is in fact the correct
   * seperator.
@@ -536,13 +534,13 @@ bool
 JSON::parseAssign ( std::istream & buf )
 {
     char  c;
-    
+
     while ( ! buf.eof() && ::isspace(buf.peek()) )
         buf.get();
-    
+
     c = buf.get();
 
-    if ( c == TOKEN_NAME_SEPARATOR ) 
+    if ( c == TOKEN_NAME_SEPARATOR )
         return true;
 
     this->setError(buf);
@@ -560,7 +558,7 @@ JSON::parseSeparator ( std::istream & buf )
 
     while ( ! buf.eof() && (::isspace(buf.peek()) || buf.peek() == '\n') )
         buf.get();
-    
+
     if ( (c = buf.peek()) == TOKEN_VALUE_SEPARATOR ) {
         buf.get();
         return true;
@@ -568,7 +566,7 @@ JSON::parseSeparator ( std::istream & buf )
 
     if ( c == TOKEN_ARRAY_END || c == TOKEN_OBJECT_END )
         return true;
-    
+
     this->setError(buf);
 
     return false;
@@ -592,7 +590,7 @@ JSON::IsSeparator ( std::istream & buf )
   *  in the input stream.
  **/
 json_t
-JSON::parseValueType ( std::istream & buf )
+JSON::ParseValueType ( std::istream & buf )
 {
     json_t t;
     char   c;
@@ -625,16 +623,16 @@ JSON::parseValueType ( std::istream & buf )
         case '9':
             t = JSON_NUMBER;
             break;
-        case 't':  
-            t = JSON_BOOL_TRUE;
+        case 't':
+            t = JSON_BOOLEAN;
             break;
-        case 'f':  
-            t = JSON_BOOL_FALSE;
+        case 'f':
+            t = JSON_BOOLEAN;
             break;
         case 'n':
             t = JSON_NULL;
             break;
-        default: 
+        default:
             t = JSON_INVALID;
             break;
     }
@@ -685,8 +683,7 @@ JSON::TypeToString ( json_t t )
         case JSON_STRING:
             name.assign("JSON String");
             break;
-        case JSON_BOOL_TRUE:
-        case JSON_BOOL_FALSE:
+        case JSON_BOOLEAN:
         case JSON_NULL:
             name.assign("JSON Literal");
             break;
@@ -720,7 +717,7 @@ JSON::ToString ( const JsonType * item, bool asJson )
     } else if ( t == JSON_STRING ) {
         const JsonString * str = (const JsonString*) item;
         return str->toString(asJson);
-    } else if ( t == JSON_BOOL_TRUE || t == JSON_BOOL_FALSE ) {
+    } else if ( t == JSON_BOOLEAN ) {
         const JsonBoolean * jb = (const JsonBoolean*) item;
         return jb->toString();
     } else if ( t == JSON_NULL ) {
@@ -739,11 +736,11 @@ JSON::Version()
     return ver;
 }
 
-/** Static method for validating the given characters is a valid
+/** Static method for validating the given character is a valid
   * input character. This includes checking for unicode chars
  **/
 bool
-JSON::ValidChar ( char c )
+JSON::IsValidChar ( char c )
 {
     if ( (c >= 'A' && c <= 'Z') || ( c >= 'a' && c <= 'z') ||
          ((unsigned char) c >= 0xC0) )
@@ -755,4 +752,3 @@ JSON::ValidChar ( char c )
 } // namespace
 
 // _TCAJSON_JSON_CPP_
-

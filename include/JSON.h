@@ -1,7 +1,7 @@
 /**
   * @file JSON.h
   *
-  * Copyright (c) 2012-2016 Timothy Charlton Arland
+  * Copyright (c) 2008-2018 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -38,7 +38,7 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.5.0"
+#define TCAJSON_VERSION     "0.5.1"
 #define TCAJSON_ERRSTRLEN   18
 
 /* std::ostream support */
@@ -77,7 +77,7 @@ class JSON {
     std::string getErrorStr() const { return _errstr; }
 
 
-  public: 
+  public:
 
     template<typename T>
     static T  FromString ( const std::string & str )
@@ -89,7 +89,7 @@ class JSON {
     }
 
     static bool        IsSeparator  ( std::istream   & buf );
-    static bool        ValidChar    ( char    c );
+    static bool        IsValidChar  ( char    c );
     static std::string TypeToString ( json_t  t );
     static std::string ToString     ( const JsonType * item, bool asJson = true );
     static std::string Version();
@@ -108,7 +108,8 @@ class JSON {
     bool   parseSeparator ( std::istream & buf );
 
     void   setError       ( std::istream & buf );
-    json_t parseValueType ( std::istream & buf );
+
+    static json_t ParseValueType ( std::istream & buf );
 
 
   private:
@@ -117,11 +118,10 @@ class JSON {
     std::ios::pos_type  _errpos;
     std::ios::pos_type  _errlen;
     std::string         _errstr;
-    
+
 };
 
 
 } // namespace
 
 #endif  // _TCAJSON_JSON_H_
-

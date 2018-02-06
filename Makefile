@@ -16,7 +16,7 @@ CCSHARED +=	-Wl,-soname,$@
 INCLUDES=       -Iinclude
 LIBS=
 
-BIN=		
+BIN=
 OBJS=		src/JsonObject.o src/JsonArray.o src/JSON.o
 
 ALL_OBJS=	$(OBJS)
@@ -29,7 +29,7 @@ include $(TOPDIR)/tcamake/project_defs
 lib: arlib
 
 arlib: lib/libtcajson.a
-solib: libtcajson.so.0.5.0
+solib: libtcajson.so.0.5.1
 
 
 lib/libtcajson.a: $(OBJS)
@@ -37,7 +37,7 @@ lib/libtcajson.a: $(OBJS)
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.0.5.0: $(OBJS)
+libtcajson.so.0.5.1: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)
@@ -45,7 +45,7 @@ libtcajson.so.0.5.0: $(OBJS)
 	@echo
 
 .PHONY: test
-test: 
+test:
 	( cd test; make all )
 	@echo
 
@@ -86,4 +86,3 @@ else
 	@echo "TCAMAKE_PREFIX is not set. Install not performed"
 	@echo "  eg. export TCAMAKE_PREFIX=/usr/local"
 endif
-

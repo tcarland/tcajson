@@ -1,7 +1,7 @@
 /**
   * @file JsonObject.cpp
   *
-  * Copyright (c) 2012,2013 Timothy Charlton Arland
+  * Copyright (c) 2012-2018 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -47,6 +47,7 @@ JsonObject::JsonObject ( const JsonObject & obj )
     *this = obj;
 }
 
+/** JsonObject destructor */
 JsonObject::~JsonObject()
 {
     this->clear();
@@ -82,8 +83,7 @@ JsonObject::operator= ( const JsonObject & obj )
             case JSON_STRING:
                 this->insert(jIter->first, new JsonString(*((JsonString*)jIter->second)));
                 break;
-            case JSON_BOOL_TRUE:
-            case JSON_BOOL_FALSE:
+            case JSON_BOOLEAN:
                 this->insert(jIter->first, new JsonBoolean(*((JsonBoolean*)jIter->second)));
                 break;
             case JSON_NULL:
@@ -104,7 +104,7 @@ JsonType*
 JsonObject::operator[] ( const std::string & key )
 {
     iterator iter;
-    
+
     if ( (iter = this->find(key)) == _items.end() )
         return NULL;
     return iter->second;
@@ -128,7 +128,7 @@ JsonObject::insert ( const std::string & key, JsonType * item )
 
     if ( (iter = this->find(key)) != _items.end() )
         throw ( std::runtime_error("JsonObject::insert() Item already exists: " + key ) );
-    
+
     return _items.insert(JsonItems::value_type(key, item));
 }
 
@@ -179,6 +179,7 @@ JsonObject::find ( const std::string & key ) const
     return _items.find(key);
 }
 
+/** Returns a boolean indicating the existance of the given key */
 bool
 JsonObject::exists ( const std::string & key ) const
 {
@@ -241,4 +242,3 @@ JsonObject::toString() const
 } // namespace
 
 // _TCAJSON_JSONOBJECT_CPP_
-
