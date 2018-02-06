@@ -70,15 +70,17 @@ class JSON {
     bool  parse     ( std::istream      & buf );
     void  clear();
 
+    /** Return the underlying JsonObject for this document */
     JsonObject& getJSON() { return this->_root; }
     JsonObject& json()    { return this->getJSON(); }
 
-    size_t      getErrorPos() const { return _errpos; }
-    std::string getErrorStr() const { return _errstr; }
+    size_t      getErrorPos() const;
+    std::string getErrorStr() const;
 
 
   public:
 
+    /** Converts the provided Type to a string using stringstream */
     template<typename T>
     static T  FromString ( const std::string & str )
     {

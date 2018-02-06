@@ -663,6 +663,21 @@ JSON::setError ( std::istream & buf )
     return;
 }
 
+/** Returns the index position within the json string where
+  * the parse error occured.
+ **/
+size_t
+JSON::getErrorPos() const
+{
+    return _errpos;
+}
+
+/** Returns a string that represents the current error state */
+std::string
+JSON::getErrorStr() const
+{
+    return _errstr;
+}
 
 /** Static function for converting the JSON type value to a string. */
 std::string

@@ -105,6 +105,7 @@ JsonArray::operator[] ( JsonArray::size_type index )
     return _items[index];
 }
 
+/** Index operator for retrieving a JsonType at a given location. */
 const JsonType*
 JsonArray::operator[] ( JsonArray::size_type index ) const
 {
@@ -120,6 +121,7 @@ JsonArray::insert ( JsonType * item )
     return _items.insert(_items.end(), item);
 }
 
+/** Inserts the provided JsonType into the array at the give position. */
 JsonArray::iterator
 JsonArray::insert ( JsonType * item, JsonArray::iterator at )
 {
