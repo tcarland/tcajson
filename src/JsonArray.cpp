@@ -1,7 +1,7 @@
 /**
   * @file JsonArray.cpp
   *
-  * Copyright (c) 2012,2013 Timothy Charlton Arland
+  * Copyright (c) 2012-2018 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -45,6 +45,7 @@ JsonArray::JsonArray ( const JsonArray & ary )
     *this = ary;
 }
 
+/** JsonArray destructor */
 JsonArray::~JsonArray()
 {
     this->clear();
@@ -66,7 +67,7 @@ JsonArray::operator= ( const JsonArray & ary )
     for ( jIter = ary.begin(); jIter != ary.end(); ++jIter )
     {
         json_t  t = (*jIter)->getType();
-        
+
         switch ( t ) {
             case JSON_OBJECT:
                 this->insert(new JsonObject(*(JsonObject*)*jIter));
@@ -80,8 +81,7 @@ JsonArray::operator= ( const JsonArray & ary )
             case JSON_STRING:
                 this->insert(new JsonString(*(JsonString*)*jIter));
                 break;
-            case JSON_BOOL_TRUE:
-            case JSON_BOOL_FALSE:
+            case JSON_BOOLEAN:
                 this->insert(new JsonBoolean(*(JsonBoolean*)*jIter));
                 break;
             case JSON_NULL:
@@ -105,6 +105,7 @@ JsonArray::operator[] ( JsonArray::size_type index )
     return _items[index];
 }
 
+/** Index operator for retrieving a JsonType at a given location. */
 const JsonType*
 JsonArray::operator[] ( JsonArray::size_type index ) const
 {
@@ -120,6 +121,7 @@ JsonArray::insert ( JsonType * item )
     return _items.insert(_items.end(), item);
 }
 
+/** Inserts the provided JsonType into the array at the give position. */
 JsonArray::iterator
 JsonArray::insert ( JsonType * item, JsonArray::iterator at )
 {
@@ -197,4 +199,3 @@ JsonArray::toString() const
 } // namespace
 
 // _TCAJSON_JSONARRAY_CPP_
-

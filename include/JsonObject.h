@@ -1,7 +1,7 @@
 /**
   * @file JsonObject.h
   *
-  * Copyright (c) 2012,2013 Timothy Charlton Arland
+  * Copyright (c) 2012-2018 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -34,7 +34,7 @@
 namespace tcajson {
 
 
-/** The JsonObject class represents the core JSON type of 
+/** The JsonObject class represents the core JSON type of
   * an associative array. The STL map container is used
   * as the underlying container.
  **/
@@ -75,11 +75,11 @@ class JsonObject : public JsonType {
     iterator        find   ( const std::string & key );
     const_iterator  find   ( const std::string & key ) const;
     bool            exists ( const std::string & key ) const;
- 
+
     size_t          size()  const { return _items.size(); }
     bool            empty() const { return _items.empty(); }
     void            clear();
-  
+
     virtual std::string toString() const;
 
   protected:
@@ -90,4 +90,3 @@ class JsonObject : public JsonType {
 } // namespace
 
 #endif // _TCAJSON_JSONOBJECT_H_
-

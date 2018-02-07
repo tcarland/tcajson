@@ -1,7 +1,7 @@
 /**
   * @file JsonType.hpp
   *
-  * Copyright (c) 2012,2013 Timothy Charlton Arland
+  * Copyright (c) 2012-2018 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -42,15 +42,13 @@ namespace tcajson {
 
 
 /**  The JsonValueType or json_t used to identify Json types */
-// TODO: Use JSON_LITERAL instead of bool and null
 typedef enum JsonValueType {
     JSON_INVALID,
     JSON_OBJECT,
     JSON_ARRAY,
     JSON_NUMBER,
     JSON_STRING,
-    JSON_BOOL_TRUE,
-    JSON_BOOL_FALSE,
+    JSON_BOOLEAN,
     JSON_NULL
 } json_t;
 
@@ -84,4 +82,3 @@ class JsonType {
 } // namespace
 
 #endif // _TCAJSON_JSONTYPE_HPP_
-

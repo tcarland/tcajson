@@ -1,7 +1,7 @@
 /**
   * @file JsonLiteral.hpp
   *
-  * Copyright (c) 2012,2013 Timothy Charlton Arland
+  * Copyright (c) 2012-2018 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -37,7 +37,7 @@ namespace tcajson {
 /** The JsonLiteral class represents all JSON types that are
   * not a JsonObject or JsonArray. JsonString and JsonNumber
   * which are technically not defined as literals, extend this
-  * class since they are similar entities with only strings 
+  * class since they are similar entities with only strings
   * requiring a bit of specialization.
  **/
 template <typename T>
@@ -71,9 +71,9 @@ class JsonLiteral : public JsonType {
     operator T&() { return this->value(); }
     operator const T&() const { return this->value(); }
 
-    
-    T& value() { return _value; }
-    const T& value() const { return _value; }
+
+    T& value() { return this->_value; }
+    const T& value() const { return this->_value; }
 
     virtual std::string toString ( bool asJson = true ) const
     {
@@ -82,12 +82,6 @@ class JsonLiteral : public JsonType {
         switch ( this->getType() ) {
             case JSON_NULL:
                 jstr << "null";
-                break;
-            case JSON_BOOL_TRUE:
-                jstr << "true";
-                break;
-            case JSON_BOOL_FALSE:
-                jstr << "false";
                 break;
             default:
                 jstr << _value;
@@ -104,11 +98,11 @@ class JsonLiteral : public JsonType {
 
 
 /** The JsonString class reprents all of our JSON string objects.
-  * Note that the default value for the toString() 'asJson' parameter  
-  * here is false.  Calling ::toString() directly on a JsonString 
+  * Note that the default value for the toString() 'asJson' parameter
+  * here is false.  Calling ::toString() directly on a JsonString
   * defaults the behavior to returning only the string value with no
   * quotes.  The toString() method of a JsonObject will explitly call
-  * this method with 'asJson' as true to ensure that the resulting 
+  * this method with 'asJson' as true to ensure that the resulting
   * output is properly formatted JSON.
  **/
 class JsonString : public JsonLiteral<std::string> {
@@ -136,7 +130,7 @@ class JsonString : public JsonLiteral<std::string> {
 };
 
 
-/**  The JsonNumber class represents a number as a double. We use a double as 
+/**  The JsonNumber class represents a number as a double. We use a double as
   *  a catch all type that can support any number format, though
   *  specializations for JsonInteger and JsonLong allow for more specific types.
  **/
@@ -169,14 +163,23 @@ class JsonLong : public JsonLiteral<long> {
 
 class JsonBoolean : public JsonLiteral<bool> {
   public:
-    JsonBoolean ( bool val = false, json_t t = JSON_BOOL_FALSE )
+    JsonBoolean ( bool val = false, json_t t = JSON_BOOLEAN )
         : JsonLiteral<bool>(val, t)
     {}
     virtual ~JsonBoolean() {}
+
+    virtual std::string toString ( bool asJson = true ) const
+    {
+        std::string val;
+        if ( this->value() )
+            val.assign("true");
+        else
+            val.assign("false");
+        return val;
+    }
 };
 
 
 } // namespace
 
 #endif // _TCAJSON_JSONLITERAL_HPP_
-

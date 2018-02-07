@@ -5,3 +5,5 @@
 *.bd
 .*.sw*
 .metadata
+.settings
+lib
