@@ -126,6 +126,12 @@ JSON::clear()
     this->_root.clear();
 }
 
+bool
+JSON::empty() const
+{
+    return _root.empty();
+}
+
 /** Parses the given string into a JsonObject.
   * Returns a boolean indicating whether the parsing of the
   * string was successful. The root JsonObject representing

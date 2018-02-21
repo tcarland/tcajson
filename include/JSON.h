@@ -38,7 +38,7 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.5.1"
+#define TCAJSON_VERSION     "0.5.2"
 #define TCAJSON_ERRSTRLEN   18
 
 /* std::ostream support */
@@ -69,6 +69,7 @@ class JSON {
     bool  parse     ( const std::string & str );
     bool  parse     ( std::istream      & buf );
     void  clear();
+    bool  empty() const;
 
     /** Return the underlying JsonObject for this document */
     JsonObject& getJSON() { return this->_root; }
@@ -77,10 +78,9 @@ class JSON {
     size_t      getErrorPos() const;
     std::string getErrorStr() const;
 
-
   public:
 
-    /** Converts the provided Type to a string using stringstream */
+    /** Converts the provided string to the Type T */
     template<typename T>
     static T  FromString ( const std::string & str )
     {
@@ -112,7 +112,6 @@ class JSON {
     void   setError       ( std::istream & buf );
 
     static json_t ParseValueType ( std::istream & buf );
-
 
   private:
 
