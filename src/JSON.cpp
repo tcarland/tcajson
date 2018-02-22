@@ -91,6 +91,15 @@ JSON::JSON ( const std::string & str )
         throw ( std::runtime_error("Error parsing string to json") );
 }
 
+/** Construct a new JSON Document using the provided JsonObject
+  * as the root JsonObject.
+ **/
+JSON::JSON ( const JsonObject & jobj )
+    : _root(jobj),
+      _errpos(0),
+      _errlen(TCAJSON_ERRSTRLEN)
+{}
+
 /**  The JSON copy constructor */
 JSON::JSON ( const JSON & json )
     : _errpos(0),
@@ -98,6 +107,7 @@ JSON::JSON ( const JSON & json )
 {
     *this = json;
 }
+
 
 /**  JSON destructor */
 JSON::~JSON()

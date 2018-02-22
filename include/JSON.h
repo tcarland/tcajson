@@ -60,6 +60,7 @@ class JSON {
 
     JSON  ( const std::string & str = "" ) noexcept(false);
     JSON  ( std::istream      & buf );
+    JSON  ( const JsonObject  & jobj );
     JSON  ( const JSON        & json );
 
     ~JSON();
@@ -111,7 +112,8 @@ class JSON {
 
     void   setError       ( std::istream & buf );
 
-    static json_t ParseValueType ( std::istream & buf );
+    static
+    json_t ParseValueType ( std::istream & buf );
 
   private:
 
