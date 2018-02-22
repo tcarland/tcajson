@@ -67,8 +67,8 @@ class JSON {
 
     JSON& operator= ( const JSON & json );
 
-    bool  parse     ( const std::string & str );
-    bool  parse     ( std::istream      & buf );
+    bool  parse     ( const std::string & str, bool clear = true );
+    bool  parse     ( std::istream      & buf, bool clear = true );
     void  clear();
     bool  empty() const;
 
@@ -121,9 +121,7 @@ class JSON {
     std::ios::pos_type  _errpos;
     std::ios::pos_type  _errlen;
     std::string         _errstr;
-
 };
-
 
 } // namespace
 

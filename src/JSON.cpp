@@ -142,13 +142,16 @@ JSON::empty() const
     return _root.empty();
 }
 
-/** Parses the given string into a JsonObject.
+/** Parses the given string as the root JsonObject.
   * Returns a boolean indicating whether the parsing of the
   * string was successful. The root JsonObject representing
   * the JSON document can be retrieved via the getJSON() method.
+  * Set clear to false to not clear the root JsonObject and
+  * essentially add the provided json string to the current
+  * object.
  **/
 bool
-JSON::parse ( const std::string & str )
+JSON::parse ( const std::string & str, bool clear )
 {
     std::string::size_type  indx;
     bool  p = false;
@@ -161,21 +164,30 @@ JSON::parse ( const std::string & str )
     std::istringstream sstr(str.substr(indx));
     std::istream       buf(sstr.rdbuf());
 
+    if ( clear )
+        _root.clear();
+
     return this->parseObject(buf, _root);
 }
 
-/** Parses the given input stream into a JsonObject.
+/** Parses the given input stream as the root JsonObject.
   * Returns a boolean indicating whether the parsing of the
   * stream was successful. The root JsonObject representing
   * the document can be retrieved via the getJSON() method.
+  * Set clear to false to not clear the root JsonObject and
+  * essentially add the provided json stream to the current
+  * object.
  **/
 bool
-JSON::parse ( std::istream & buf )
+JSON::parse ( std::istream & buf, bool clear )
 {
     char c;
 
     while ( !buf.eof() && (c = buf.peek()) != TOKEN_OBJECT_BEGIN )
         buf.get();
+
+    if ( clear )
+        _root.clear();
 
     return this->parseObject(buf, _root);
 }
