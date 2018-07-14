@@ -5,7 +5,7 @@ tcajson
  tca@charltontechnology.net
 
 
-### LICENSE
+#### LICENSE
 
  **tcajson** is free software: you can redistribute it and/or modify
  it under the terms of the GNU Lesser General Public License as
@@ -21,38 +21,32 @@ tcajson
  License along with **tcajson**.    
  If not, see <http://www.gnu.org/licenses/>.  
 
-### Overview:
+#### Overview:
 
   The **tcajson**' library is a C++ library implementation of the JSON
-standard, RFC 4627 (www.ietf.org/rfc/rfc4627.txt). JSON, or
-JavaScript Object Notation, is a text format for serializing
-structured data. More information about JSON can be found at
-www.json.org.   
+standard, RFC 4627 (www.ietf.org/rfc/rfc4627.txt).  JSON or
+*JavaScript Object Notation*, is a text format for serializing
+structured data. More information about JSON can be found at www.json.org.   
 
-  This implementation was created after browsing the available
-(at the time) C++ JSON implementations and either not liking
-the library, or not liking the licensing scheme for the
-given library or both.   
+  This implementation was created in 2008 after browsing the available
+(at the time) C++ JSON implementations and either not liking the library API,
+or not liking the licensing for the given library or both.   
 
 
-### API
+#### API
 
-  * **JSON**  
-  The **JSON** class is the primary interface for parsing JSON documents.  
+  * **JSON** - The **JSON** class is the primary interface for parsing JSON documents.  
 
-  * **JsonItem**
-  JsonItem is the base class of all JSON objects.
+  * **JsonType** - A JsonType is the base class for all JSON types consisting
+  of literals such numbers, booleans, and strings as well as our array and
+  object.
 
-  * **JsonType**
-  JsonType represents the base JSON types including literals, booleans and strings.
-  Typedefs provide a mapping for the various types: **JsonNumber**, **JsonBoolean**,
-  and **JsonString**
+  * **JsonLiteral** - Provides a base implementation for our various literals:
+    *JsonInteger, JsonLong, JsonNumber, JsonBoolean and JsonString*.
 
-  * **JsonArray**
-  A one-dimensional array of JsonItems.
+  * **JsonArray** - A one-dimensional array of *JsonType*'s.
 
-  * **JsonObject**
-  The core JSON type of an associative array.
+  * **JsonObject** - An associative array providing the core key-value types.
 
 
 #### Building the Library
