@@ -21,7 +21,7 @@ tcajson
  License along with **tcajson**.    
  If not, see <http://www.gnu.org/licenses/>.  
 
-#### Overview:
+#### Overview
 
   The **tcajson**' library is a C++ library implementation of the JSON
 standard, RFC 4627 (www.ietf.org/rfc/rfc4627.txt).  JSON or
@@ -34,22 +34,22 @@ or not liking the licensing for the given library or both.
 
 
 #### API
+ The library consists of the following classes:
+* **JSON** - The *JSON* class is the primary interface for parsing JSON documents.  
 
-  * **JSON** - The **JSON** class is the primary interface for parsing JSON documents.  
-
-  * **JsonType** - A JsonType is the base class for all JSON types consisting
+* **JsonType** - A JsonType is the base class for all JSON types consisting
   of literals such numbers, booleans, and strings as well as our array and
   object.
 
-  * **JsonLiteral** - Provides a base implementation for our various literals:
+* **JsonLiteral** - Provides a base implementation for our various literals:
     *JsonInteger, JsonLong, JsonNumber, JsonBoolean and JsonString*.
 
-  * **JsonArray** - A one-dimensional array of *JsonType*'s.
+* **JsonArray** - A one-dimensional array of *JsonType*'s.
 
-  * **JsonObject** - An associative array providing the core key-value types.
+* **JsonObject** - An associative array providing the core key-value types.
 
 
-#### Building the Library
+#### Build
  To build the library, first download the tcamake package via git. After
 this, a simple 'make' will build the library. By default, the Makefile looks
 for tcamake in '..'
