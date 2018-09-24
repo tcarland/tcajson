@@ -37,7 +37,7 @@ namespace tcajson {
 /** The JsonLiteral class represents all JSON types that are
   * not a JsonObject or JsonArray. JsonString and JsonNumber
   * which are technically not defined as literals, extend this
-  * class since they are similar entities with only strings
+  * class since they are similar in implementation with only strings
   * requiring a bit of specialization.
  **/
 template <typename T>
@@ -97,7 +97,7 @@ class JsonLiteral : public JsonType {
 };
 
 
-/** The JsonString class reprents all of our JSON string objects.
+/** The JsonString class represents all of our JSON string objects.
   * Note that the default value for the toString() 'asJson' parameter
   * here is false.  Calling ::toString() directly on a JsonString
   * defaults the behavior to returning only the string value with no
@@ -170,11 +170,9 @@ class JsonBoolean : public JsonLiteral<bool> {
 
     virtual std::string toString ( bool asJson = true ) const
     {
-        std::string val;
+        std::string val = "false";
         if ( this->value() )
             val.assign("true");
-        else
-            val.assign("false");
         return val;
     }
 };
