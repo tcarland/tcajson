@@ -1,7 +1,7 @@
 /**
   * @file JSON.h
   *
-  * Copyright (c) 2008-2018 Timothy Charlton Arland
+  * Copyright (c) 2008-2019 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -38,8 +38,10 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.5.3"
+#define TCAJSON_VERSION     "0.5.4"
 #define TCAJSON_ERRSTRLEN   32
+
+
 
 /* std::ostream support */
 std::ostream& operator<< ( std::ostream & strm, const JsonObject  & obj );
@@ -65,19 +67,19 @@ class JSON {
 
     ~JSON();
 
-    JSON& operator= ( const JSON & json );
+    JSON&        operator= ( const JSON & json );
 
-    bool  parse     ( const std::string & str, bool clear = true );
-    bool  parse     ( std::istream      & buf, bool clear = true );
-    void  clear();
-    bool  empty() const;
+    bool         parse     ( const std::string & str, bool clear = true );
+    bool         parse     ( std::istream      & buf, bool clear = true );
+    void         clear();
+    bool         empty() const;
 
     /** Return the underlying JsonObject for this document */
-    JsonObject& getJSON() { return this->_root; }
-    JsonObject& json()    { return this->getJSON(); }
+    JsonObject&  getJSON() { return this->_root; }
+    JsonObject&  json()    { return this->getJSON(); }
 
-    size_t      getErrorPos() const;
-    std::string getErrorStr() const;
+    size_t       getErrorPos() const;
+    std::string  getErrorStr() const;
 
   public:
 
@@ -91,11 +93,11 @@ class JSON {
         return target;
     }
 
-    static bool        IsSeparator  ( std::istream   & buf );
-    static bool        IsValidChar  ( char    c );
-    static std::string TypeToString ( json_t  t );
-    static std::string ToString     ( const JsonType * item, bool asJson = true );
-    static std::string Version();
+    static bool         IsSeparator  ( std::istream   & buf );
+    static bool         IsValidChar  ( char    c );
+    static std::string  TypeToString ( json_t  t );
+    static std::string  ToString     ( const JsonType * item, bool asJson = true );
+    static std::string  Version();
 
 
   private:

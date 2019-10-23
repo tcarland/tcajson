@@ -1,7 +1,7 @@
 /**
   * @file JsonArray.h
   *
-  * Copyright (c) 2012-2018 Timothy Charlton Arland
+  * Copyright (c) 2012-2019 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -76,7 +76,6 @@ class JsonArray : public JsonType {
 
     ArrayItems     _items;
 };
-
 
 } // namespace
 

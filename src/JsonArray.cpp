@@ -1,7 +1,7 @@
 /**
   * @file JsonArray.cpp
   *
-  * Copyright (c) 2012-2018 Timothy Charlton Arland
+  * Copyright (c) 2012-2019 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -37,6 +37,7 @@ namespace tcajson {
 JsonArray::JsonArray()
     : JsonType(JSON_ARRAY)
 {}
+
 
 /**  JsonArray copy constructor */
 JsonArray::JsonArray ( const JsonArray & ary )

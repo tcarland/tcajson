@@ -1,7 +1,7 @@
 /**
   * @file JsonType.hpp
   *
-  * Copyright (c) 2012-2018 Timothy Charlton Arland
+  * Copyright (c) 2012-2019 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -41,7 +41,7 @@ namespace tcajson {
 #define TOKEN_WS               ' '
 
 
-/**  The JsonValueType or json_t used to identify Json types */
+/**  The JsonValueType or json_t used to identify JSON types */
 typedef enum JsonValueType {
     JSON_INVALID,
     JSON_OBJECT,
