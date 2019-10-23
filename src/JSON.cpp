@@ -1,7 +1,7 @@
 /**
   * @file JSON.cpp
   *
-  * Copyright (c) 2012-2018 Timothy Charlton Arland
+  * Copyright (c) 2012-2019 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -91,6 +91,7 @@ JSON::JSON ( const std::string & str )
         throw ( std::runtime_error("Error parsing string to json") );
 }
 
+
 /** Construct a new JSON Document using the provided JsonObject
   * as the root JsonObject.
  **/
@@ -99,6 +100,7 @@ JSON::JSON ( const JsonObject & jobj )
       _errpos(0),
       _errlen(TCAJSON_ERRSTRLEN)
 {}
+
 
 /**  The JSON copy constructor */
 JSON::JSON ( const JSON & json )
@@ -113,6 +115,7 @@ JSON::JSON ( const JSON & json )
 JSON::~JSON()
 {}
 
+// ------------------------------------------------------------------------- //
 
 /** Assignment operator */
 JSON&
@@ -129,6 +132,8 @@ JSON::operator= ( const JSON & json )
     return *this;
 }
 
+// ------------------------------------------------------------------------- //
+
 /** Erases the current JSON document, clearing this object */
 void
 JSON::clear()
@@ -136,16 +141,19 @@ JSON::clear()
     this->_root.clear();
 }
 
+
 bool
 JSON::empty() const
 {
     return _root.empty();
 }
 
-/** Parses the given string as the root JsonObject.
-  * Returns a boolean indicating whether the parsing of the
-  * string was successful. The root JsonObject representing
-  * the JSON document can be retrieved via the getJSON() method.
+// ------------------------------------------------------------------------- //
+
+/** Parses the given string as the root JsonObject. Returns a
+  * boolean indicating whether the parsing of the string was 
+  * successful. The root JsonObject representing the document 
+  * can be retrieved via the getJSON() method.
   * Set clear to false to not clear the root JsonObject and
   * essentially add the provided json string to the current
   * object.
@@ -170,10 +178,10 @@ JSON::parse ( const std::string & str, bool clear )
     return this->parseObject(buf, _root);
 }
 
-/** Parses the given input stream as the root JsonObject.
-  * Returns a boolean indicating whether the parsing of the
-  * stream was successful. The root JsonObject representing
-  * the document can be retrieved via the getJSON() method.
+/** Parses the given input stream as the root JsonObject. Returns a
+  * boolean indicating whether the parsing of the stream was 
+  * successful. The root JsonObject representing the document can be
+  * retrieved via the getJSON() method.
   * Set clear to false to not clear the root JsonObject and
   * essentially add the provided json stream to the current
   * object.
@@ -191,6 +199,8 @@ JSON::parse ( std::istream & buf, bool clear )
 
     return this->parseObject(buf, _root);
 }
+
+// ------------------------------------------------------------------------- //
 
 /** Internal method for parsing the input stream for a JsonObject.
   * This method is used to recursively parse any and all objects
@@ -299,8 +309,9 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
     return p;
 }
 
-/** Recursive method for parsing the JSON Array type from
-  * the given input stream.
+
+/** Recursive method for parsing the JSON Array type from the
+  *  given input stream.
  **/
 bool
 JSON::parseArray ( std::istream & buf, JsonArray & ary )
@@ -389,6 +400,7 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
     return true;
 }
 
+
 /** Private method for parsing a JSON String type */
 bool
 JSON::parseString ( std::istream & buf, JsonString & str )
@@ -467,6 +479,7 @@ JSON::parseString ( std::istream & buf, JsonString & str )
     return true;
 }
 
+
 /** Priavate method for parsing a JSON Number type */
 bool
 JSON::parseNumber ( std::istream & buf, JsonNumber & num )
@@ -493,6 +506,7 @@ JSON::parseNumber ( std::istream & buf, JsonNumber & num )
 
     return true;
 }
+
 
 /** Private method for parsing a JSON Boolean literal type */
 bool
@@ -527,6 +541,7 @@ JSON::parseBoolean ( std::istream & buf, JsonBoolean & b )
     return false;
 }
 
+
 /** Private method for parsing a JSON Literal */
 bool
 JSON::parseLiteral ( std::istream & buf, JsonType & item )
@@ -553,6 +568,7 @@ JSON::parseLiteral ( std::istream & buf, JsonType & item )
     return false;
 }
 
+
 /** Private method for parsing the JSON name assignment operator.
   * Retrieves the name separator token from the stream
   * and return true if the character is in fact the correct
@@ -575,6 +591,7 @@ JSON::parseAssign ( std::istream & buf )
 
     return false;
 }
+
 
 /**  Method for parsing the field or value operator from
   *  the given input stream.
@@ -600,6 +617,7 @@ JSON::parseSeparator ( std::istream & buf )
     return false;
 }
 
+
 /**  Static function to determine whether the next character in the input
   *  stream is a valid JSON value or end separator.
  **/
@@ -613,6 +631,7 @@ JSON::IsSeparator ( std::istream & buf )
 
     return false;
 }
+
 
 /**  Method for determining the value type of the upcoming value
   *  in the input stream.
@@ -668,6 +687,7 @@ JSON::ParseValueType ( std::istream & buf )
     return t;
 }
 
+
 /** Sets the error string, recording the position within the stream
   * where the parse error occurred.
  **/
@@ -691,6 +711,7 @@ JSON::setError ( std::istream & buf )
     return;
 }
 
+
 /** Returns the index position within the json string where
   * the parse error occured.
  **/
@@ -700,12 +721,14 @@ JSON::getErrorPos() const
     return _errpos;
 }
 
+
 /** Returns a string that represents the current error state */
 std::string
 JSON::getErrorStr() const
 {
     return _errstr;
 }
+
 
 /** Static function for converting the JSON type value to a string. */
 std::string
@@ -739,6 +762,7 @@ JSON::TypeToString ( json_t t )
     return name;
 }
 
+
 /**  Converts the provided JsonType to a readable string. Note that
   *  by default all items are formatted as JSON, so strings will
   *  returned in quotes. Set the 'asJson' boolean to false to obtain
@@ -770,6 +794,7 @@ JSON::ToString ( const JsonType * item, bool asJson )
     return std::string("Invalid type");
 }
 
+
 /**  Returns a string of the tcajson library version */
 std::string
 JSON::Version()
@@ -778,6 +803,7 @@ JSON::Version()
     ver.append(TCAJSON_VERSION);
     return ver;
 }
+
 
 /** Static method for validating the given character is a valid
   * input character. This includes checking for unicode chars

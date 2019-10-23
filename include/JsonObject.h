@@ -1,7 +1,7 @@
 /**
   * @file JsonObject.h
   *
-  * Copyright (c) 2012-2018 Timothy Charlton Arland
+  * Copyright (c) 2012-2019 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -80,7 +80,9 @@ class JsonObject : public JsonType {
     bool            empty() const { return _items.empty(); }
     void            clear();
 
-    virtual std::string toString() const;
+    virtual 
+    std::string     toString() const;
+
 
   protected:
 

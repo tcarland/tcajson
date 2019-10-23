@@ -1,7 +1,7 @@
 /**
   * @file JsonLiteral.hpp
   *
-  * Copyright (c) 2012-2018 Timothy Charlton Arland
+  * Copyright (c) 2012-2019 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -32,7 +32,6 @@
 
 
 namespace tcajson {
-
 
 /** The JsonLiteral class represents all JSON types that are
   * not a JsonObject or JsonArray. JsonString and JsonNumber
@@ -67,13 +66,12 @@ class JsonLiteral : public JsonType {
         return(_value == val._value);
     }
 
-
     operator T&() { return this->value(); }
     operator const T&() const { return this->value(); }
 
-
-    T& value() { return this->_value; }
+    T&       value()       { return this->_value; }
     const T& value() const { return this->_value; }
+
 
     virtual std::string toString ( bool asJson = true ) const
     {
