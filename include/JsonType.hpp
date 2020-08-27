@@ -61,7 +61,7 @@ class JsonType {
     JsonType ( json_t  t = JSON_NULL ) : _type(t) {}
     virtual ~JsonType() {}
 
-    json_t   getType()      const { return _type; }
+    json_t   getType()      const { return this->_type; }
     json_t   getValueType() const { return this->getType(); }
 
 

@@ -103,9 +103,16 @@ $./jsoncreate
 or in a more readable form:
 ```
 {
-    "clients" : [ "192.168.1.2", "192.168.1.3", "192.168.1.4" ],
+    "clients" : [
+        "192.168.1.2",
+        "192.168.1.3",
+        "192.168.1.4"
+    ],
     "contact" : "admin@domain.com",
-    "servers" : [ "localhost:8082", "www:8088" ],
+    "servers" : [
+        "localhost:8082",
+        "www:8088"
+    ],
     "timeout" : 120
 }
 ```
