@@ -1,7 +1,7 @@
 /**
   * @file JSON.h
   *
-  * Copyright (c) 2008-2019 Timothy Charlton Arland
+  * Copyright (c) 2008-2020 Timothy Charlton Arland
   * @author  tcarland@gmail.com
   *
   * @section LICENSE
@@ -38,9 +38,8 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION     "0.5.4"
+#define TCAJSON_VERSION    "20.01"
 #define TCAJSON_ERRSTRLEN   32
-
 
 
 /* std::ostream support */
@@ -50,7 +49,6 @@ std::ostream& operator<< ( std::ostream & strm, const JsonType    & val );
 std::ostream& operator<< ( std::ostream & strm, const JsonNumber  & val );
 std::ostream& operator<< ( std::ostream & strm, const JsonBoolean & val );
 std::ostream& operator<< ( std::ostream & strm, const JsonString  & str );
-
 
 
 /** The JSON class is the primary interface for parsing JSON documents
