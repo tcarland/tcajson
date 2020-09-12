@@ -771,40 +771,28 @@ JSON::TypeToString ( json_t t )
 std::string
 JSON::ToString ( const JsonType * item, bool asJson )
 {
-    std::string json;
     json_t  t = item->getType();
 
-    switch ( t ) {
-        case JSON_OBJECT:
-            const JsonObject * obj = (const JsonObject*) item;
-            json = obj->toString();
-            break;
-        case JSON_ARRAY:
-            const JsonArray  * ary = (const JsonArray*) item;
-            json = ary->toString();
-            break;
-        case JSON_NUMBER:
-            const JsonNumber * num = (const JsonNumber*) item;
-            json = num->toString();
-            break;
-        case JSON_STRING:
-            const JsonString * str = (const JsonString*) item;
-            json = str->toString(asJson);
-            break;
-        case JSON_BOOLEAN:
-            const JsonBoolean * jb = (const JsonBoolean*) item;
-            json = jb->toString();
-            break;
-        case JSON_NULL:
-            json = item->toString();
-            break;
-        case JSON_INVALID:
-        default:
-            json = "Invalid type";
-            break;
+    if ( t == JSON_OBJECT ) {
+        const JsonObject * obj = (const JsonObject*) item;
+        return obj->toString();
+    } else if ( t == JSON_ARRAY ) {
+        const JsonArray  * ary = (const JsonArray*) item;
+        return ary->toString();
+    } else if ( t == JSON_NUMBER ) {
+        const JsonNumber * num = (const JsonNumber*) item;
+        return num->toString();
+    } else if ( t == JSON_STRING ) {
+        const JsonString * str = (const JsonString*) item;
+        return str->toString(asJson);
+    } else if ( t == JSON_BOOLEAN ) {
+        const JsonBoolean * jb = (const JsonBoolean*) item;
+        return jb->toString();
+    } else if ( t == JSON_NULL ) {
+        return item->toString();
     }
 
-    return json;
+    return std::string("Invalid type");
 }
 
 
