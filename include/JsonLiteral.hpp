@@ -37,7 +37,7 @@ namespace tcajson {
   * not a JsonObject or JsonArray. JsonString and JsonNumber
   * which are technically not defined as literals, extend this
   * class since they are similar in implementation with only strings
-  * requiring a bit of specialization.
+  * requiring some specialization.
  **/
 template <typename T>
 class JsonLiteral : public JsonType {

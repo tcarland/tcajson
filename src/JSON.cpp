@@ -151,8 +151,8 @@ JSON::empty() const
 // ------------------------------------------------------------------------- //
 
 /** Parses the given string as the root JsonObject. Returns a
-  * boolean indicating whether the parsing of the string was 
-  * successful. The root JsonObject representing the document 
+  * boolean indicating whether the parsing of the string was
+  * successful. The root JsonObject representing the document
   * can be retrieved via the getJSON() method.
   * Set clear to false to not clear the root JsonObject and
   * essentially add the provided json string to the current
@@ -179,7 +179,7 @@ JSON::parse ( const std::string & str, bool clear )
 }
 
 /** Parses the given input stream as the root JsonObject. Returns a
-  * boolean indicating whether the parsing of the stream was 
+  * boolean indicating whether the parsing of the stream was
   * successful. The root JsonObject representing the document can be
   * retrieved via the getJSON() method.
   * Set clear to false to not clear the root JsonObject and
