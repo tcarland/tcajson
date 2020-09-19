@@ -9,13 +9,12 @@ ifdef TCAMAKE_DEBUG
 OPT_FLAGS= 	-g
 endif
 
-OPT_FLAGS += 	-fPIC -O2
-CCSHARED +=	-Wl,-soname,$@
+OPT_FLAGS+= -fPIC -O2
+CCSHARED+=	-Wl,-soname,$@
+CXXFLAGS=	-std=c++11
 
-
-INCLUDES=       -Iinclude
+INCLUDES=   -Iinclude
 LIBS=
-
 BIN=
 OBJS=		src/JsonObject.o src/JsonArray.o src/JSON.o
 
@@ -29,7 +28,7 @@ include $(TOPDIR)/tcamake/project_defs
 lib: arlib
 
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.0.1
+solib: libtcajson.so.2.0.9
 
 
 lib/libtcajson.a: $(OBJS)
@@ -37,7 +36,7 @@ lib/libtcajson.a: $(OBJS)
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.2.0.1: $(OBJS)
+libtcajson.so.2.0.9: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)

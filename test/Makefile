@@ -8,9 +8,10 @@ OPT_FLAGS= 	-g
 endif
 
 # custom lib/includes
-INCLUDES=       -I../include
+INCLUDES=	-I../include
 LFLAGS=		-L../lib
 LIBS=		-ltcajson
+CXXFLAGS=	-std=c++11
 
 BIN=		jsontest jsoncreate
 OBJS=		jsontest.o jsoncreate.o
