@@ -21,22 +21,22 @@ OBJS=		src/JsonObject.o src/JsonArray.o src/JSON.o
 ALL_OBJS=	$(OBJS)
 ALL_BINS=	$(BIN)
 
+
+include $(TOPDIR)/tcamake/tcamake_include
+
+
 all: lib
 
-include $(TOPDIR)/tcamake/project_defs
-
 lib: arlib
-
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.0.9
-
+solib: libtcajson.so.2.0.11
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.2.0.9: $(OBJS)
+libtcajson.so.2.0.11: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)
@@ -81,7 +81,4 @@ ifdef TCAMAKE_PREFIX
 	$(RSYNC) --delete include/ $(TCAMAKE_PREFIX)/include/tcajson/
 	$(RSYNC) lib/ $(TCAMAKE_PREFIX)/lib/
 	@echo
-else
-	@echo "TCAMAKE_PREFIX is not set. Install not performed"
-	@echo "  eg. export TCAMAKE_PREFIX=/usr/local"
 endif
