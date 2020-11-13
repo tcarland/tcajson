@@ -1,8 +1,7 @@
 /**
   * @file JSON.h
   *
-  * Copyright (c) 2008-2020 Timothy Charlton Arland
-  * @author  tcarland@gmail.com
+  * Copyright (c) 2008-2020 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -38,8 +37,8 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION    "20.09"
-#define TCAJSON_ERRSTRLEN   32
+#define TCAJSON_VERSION    "20.11"
+#define TCAJSON_ERRSTRLEN   48
 
 
 /* std::ostream support */

@@ -1,6 +1,5 @@
 # Makefile
 #
-
 TOPDIR = ../..
 
 ifdef TCAMAKE_DEBUG
@@ -19,10 +18,11 @@ OBJS=		jsontest.o jsoncreate.o
 ALL_OBJS=	$(OBJS) 
 ALL_BINS=	$(BIN)
 
+
+include $(TOPDIR)/tcamake/tcamake_include
+
+
 all: jsontest jsoncreate
-
-include $(TOPDIR)/tcamake/project_defs
-
 
 jsontest: jsontest.o
 	$(make-cxxbin-rule)
