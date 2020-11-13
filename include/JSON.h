@@ -1,8 +1,7 @@
 /**
   * @file JSON.h
   *
-  * Copyright (c) 2008-2020 Timothy Charlton Arland
-  * @author  tcarland@gmail.com
+  * Copyright (c) 2008-2020 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
