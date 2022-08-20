@@ -36,7 +36,7 @@ lib/libtcajson.a: $(OBJS)
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.2.0.11: $(OBJS)
+libtcajson.so.2.2.8: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)
