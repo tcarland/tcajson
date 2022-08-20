@@ -29,7 +29,7 @@ all: lib
 
 lib: arlib
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.0.11
+solib: libtcajson.so.2.2.8
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
