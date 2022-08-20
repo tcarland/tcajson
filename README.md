@@ -1,43 +1,43 @@
 tcajson
 ========
 
- Copyright (c) 2008-2020 Timothy Charlton Arland <tcarland@gmail.com> <tca@charltontechnology.net>
+Copyright (c) 2008-2022 Timothy Charlton Arland <tcarland@gmail.com> <tca@charltontechnology.net>
 
 
 ## LICENSE
 
- **tcajson** is free software: you can redistribute it and/or modify
- it under the terms of the GNU Lesser General Public License as
- published by the Free Software Foundation, either version 3 of
- the License, or (at your option) any later version.  
+**tcajson** is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as
+published by the Free Software Foundation, either version 3 of
+the License, or (at your option) any later version.  
 
- **tcajson** is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU Lesser General Public License for more details.  
+**tcajson** is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.  
 
- You should have received a copy of the GNU Lesser General Public
- License along with **tcajson**.    
- If not, see <http://www.gnu.org/licenses/>.  
+You should have received a copy of the GNU Lesser General Public
+License along with **tcajson**.    
+If not, see <http://www.gnu.org/licenses/>.  
 
 ---
 
 # Overview
 
-  The **tcajson** library is a C++ library implementation of the JSON
+The **tcajson** library is a C++ library implementation of the JSON
 standard, [RFC 4627](www.ietf.org/rfc/rfc4627.txt). 
 
 JSON or *JavaScript Object Notation*, is a text format for serializing
 structured data. More information about JSON can be found at www.json.org.   
 
-  This implementation was created in 2008 after browsing the available
+This implementation was created in 2008 after browsing the available
 (at the time) C++ JSON implementations and either not liking the library API,
 or not liking the licensing for the given library or both.   
 
 
 ## API
 
- The library consists of the following classes:
+The library consists of the following classes:
 
 - **JSON** - The *JSON* class is the primary interface for working with 
   JSON documents.  
@@ -59,15 +59,14 @@ or not liking the licensing for the given library or both.
 To build the library, first download the tcamake package via git. After
 this, a simple 'make' will build the library. By default, the Makefile looks
 for tcamake in '..'
-
-```
+```sh
 cd ..
 git clone https://github.com/tcarland/tcamake.git
 ```
 
 ### Examples
 
-```
+```cpp
 #include <string>
 #include <iostreamd>
 
@@ -106,7 +105,7 @@ $./jsoncreate
 { "clients" : [ "192.168.1.2", "192.168.1.3", "192.168.1.4" ], "contact" : "admin@domain.com", "servers" : [ "localhost:8082", "www:8088" ], "timeout" : 120 }
 ```
 or in a more readable form:
-```
+```json
 {
     "clients" : [
         "192.168.1.2",
