@@ -47,7 +47,7 @@ or not liking the licensing for the given library or both.
   object.
 
 - **JsonLiteral** - Provides a base implementation for our various literals:
-    *JsonInteger, JsonLong, JsonNumber, JsonBoolean and JsonString*.
+  *JsonInteger, JsonLong, JsonNumber, JsonBoolean and JsonString*.
 
 - **JsonArray** - A one-dimensional array of *JsonType*'s.
 
@@ -55,7 +55,8 @@ or not liking the licensing for the given library or both.
 
 
 ## Build
- To build the library, first download the tcamake package via git. After
+
+To build the library, first download the tcamake package via git. After
 this, a simple 'make' will build the library. By default, the Makefile looks
 for tcamake in '..'
 
@@ -64,8 +65,7 @@ cd ..
 git clone https://github.com/tcarland/tcamake.git
 ```
 
-
-#### Examples
+### Examples
 
 ```
 #include <string>
