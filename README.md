@@ -1,7 +1,7 @@
 tcajson
 ========
 
-Copyright (c) 2008-2022 Timothy Charlton Arland <tcarland@gmail.com> <tca@charltontechnology.net>
+Copyright (c) 2008-2023 Timothy Charlton Arland <tcarland@gmail.com> <tca@charltontechnology.net>
 
 
 ## LICENSE
