@@ -64,8 +64,11 @@ cd ..
 git clone https://github.com/tcarland/tcamake.git
 ```
 
-### Examples
+<br>
 
+---
+
+## Examples
 ```cpp
 #include <string>
 #include <iostreamd>
@@ -99,12 +102,13 @@ int main() {
 ```
 
 The resulting JSON string output:
-
 ```
 $./jsoncreate
 { "clients" : [ "192.168.1.2", "192.168.1.3", "192.168.1.4" ], "contact" : "admin@domain.com", "servers" : [ "localhost:8082", "www:8088" ], "timeout" : 120 }
 ```
-or in a more readable form:
+
+
+That JSON in a more readable form:
 ```json
 {
     "clients" : [
