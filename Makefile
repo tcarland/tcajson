@@ -19,9 +19,18 @@ OBJS=		src/JsonObject.o src/JsonArray.o src/JSON.o
 ALL_OBJS=	$(OBJS)
 ALL_BINS=	$(BIN)
 
+# ---------------------------------------------
 
-include $(TCAMAKE_HOME)/tcamake_include
+ifeq ($(TCAMAKE_HOME),)
+	export TCAMAKE_HOME := $(shell realpath ../tcamake)
+endif
+ifeq ($(TCAMAKE_PROJECT),)
+	export TCAMAKE_PROJECT := $(shell realpath ..)
+endif
 
+include ${TCAMAKE_HOME}/tcamake_include
+
+# ---------------------------------------------
 
 all: lib
 

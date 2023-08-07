@@ -17,6 +17,10 @@ ALL_OBJS=	$(OBJS)
 ALL_BINS=	$(BIN)
 
 
+ifeq ($(TCAMAKE_HOME),)
+	export TCAMAKE_HOME := $(shell realpath ../tcamake)
+endif
+
 include $(TCAMAKE_HOME)/tcamake_include
 
 

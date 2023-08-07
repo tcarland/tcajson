@@ -27,7 +27,9 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: docker/metadata-action@v3
+    - name: Extract metadata for Docker
+      id: meta
+      uses: docker/metadata-action@v3
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
@@ -35,4 +37,4 @@ jobs:
       run: docker build -t ${{ env.IMAGE_NAME }} -f build/Containerfile .
 
     - name: Run Docker Build
-      run: docker run --rm -v $PWD:/app -e TCAMAKE_HOME=/tcamake ${{ env.IMAGE_NAME }} /bin/bash -c "cd /app && make arlib"
+      run: docker run --rm ${{ env.IMAGE_NAME }} /bin/bash -c "cd /opt/tcajson && make test && ./test/jsontest"
