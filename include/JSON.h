@@ -37,7 +37,7 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION    "23.01"
+#define TCAJSON_VERSION    "v2.3.8"
 #define TCAJSON_ERRSTRLEN   48
 
 

@@ -1,6 +1,4 @@
-# Makefile
-#
-TOPDIR = ..
+# tcajson Makefile
 
 # set requirements
 NEED_SOCKET = 1
@@ -22,21 +20,21 @@ ALL_OBJS=	$(OBJS)
 ALL_BINS=	$(BIN)
 
 
-include $(TOPDIR)/tcamake/tcamake_include
+include $(TCAMAKE_HOME)/tcamake_include
 
 
 all: lib
 
 lib: arlib
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.3.1
+solib: libtcajson.so.2.3.8
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.2.3.1: $(OBJS)
+libtcajson.so.2.3.8: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)
