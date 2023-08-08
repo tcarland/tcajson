@@ -1,7 +1,5 @@
 # Makefile
 #
-TOPDIR = ../..
-
 ifdef TCAMAKE_DEBUG
 OPT_FLAGS= 	-g
 endif
@@ -19,7 +17,11 @@ ALL_OBJS=	$(OBJS)
 ALL_BINS=	$(BIN)
 
 
-include $(TOPDIR)/tcamake/tcamake_include
+ifeq ($(TCAMAKE_HOME),)
+	export TCAMAKE_HOME := $(shell realpath ../tcamake)
+endif
+
+include $(TCAMAKE_HOME)/tcamake_include
 
 
 all: jsontest jsoncreate

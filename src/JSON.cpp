@@ -799,7 +799,7 @@ JSON::ToString ( const JsonType * item, bool asJson )
 std::string
 JSON::Version()
 {
-    std::string ver = "tcajson v";
+    std::string ver = "tcajson ";
     ver.append(TCAJSON_VERSION);
     return ver;
 }
