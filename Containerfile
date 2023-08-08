@@ -4,7 +4,6 @@ ENV TCAMAKE_PROJECT=/opt
 ENV TCAMAKE_HOME=/opt/tcamake
 ENV TCAMAKE_PREFIX=/usr
 
-
 WORKDIR /opt
 
 RUN mkdir -p /opt/tcajson
