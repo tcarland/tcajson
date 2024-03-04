@@ -88,7 +88,6 @@ JsonObject::operator= ( const JsonObject & obj )
             case JSON_NULL:
                 this->insert(jIter->first, new JsonType(JSON_NULL));
                 break;
-            case JSON_INVALID:
             default:
                 break;
         }
