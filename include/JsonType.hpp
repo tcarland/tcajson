@@ -42,13 +42,12 @@ namespace tcajson {
 
 /**  The JsonValueType or json_t used to identify JSON types */
 typedef enum JsonValueType {
-    JSON_INVALID,
+    JSON_NULL,
     JSON_OBJECT,
     JSON_ARRAY,
     JSON_NUMBER,
     JSON_STRING,
-    JSON_BOOLEAN,
-    JSON_NULL
+    JSON_BOOLEAN
 } json_t;
 
 

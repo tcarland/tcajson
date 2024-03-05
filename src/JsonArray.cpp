@@ -87,7 +87,6 @@ JsonArray::operator= ( const JsonArray & ary )
             case JSON_NULL:
                 this->insert(new JsonType(JSON_NULL));
                 break;
-            case JSON_INVALID:
             default:
                 break;
         }

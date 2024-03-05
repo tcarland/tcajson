@@ -296,7 +296,6 @@ JSON::parseObject ( std::istream & buf, JsonObject & obj )
                     p = true;
                 }
                 break;
-            case JSON_INVALID:
             default:
                 return false;
         }
@@ -386,7 +385,6 @@ JSON::parseArray ( std::istream & buf, JsonArray & ary )
                     p = true;
                 }
                 break;
-            case JSON_INVALID:
             default:
                 this->setError(buf);
                 return false;
@@ -676,10 +674,8 @@ JSON::ParseValueType ( std::istream & buf )
             t = JSON_BOOLEAN;
             break;
         case 'n':
-            t = JSON_NULL;
-            break;
         default:
-            t = JSON_INVALID;
+            t = JSON_NULL;
             break;
     }
 
@@ -751,10 +747,7 @@ JSON::TypeToString ( json_t t )
         case JSON_BOOLEAN:
         case JSON_NULL:
             name.assign("JSON Literal");
-            break;
-        case JSON_INVALID:
         default:
-            name.assign("Invalid type");
             break;
     }
 
@@ -771,27 +764,28 @@ std::string
 JSON::ToString ( const JsonType * item, bool asJson )
 {
     json_t  t = item->getType();
+    std::string str = "";
 
     if ( t == JSON_OBJECT ) {
         const JsonObject * obj = (const JsonObject*) item;
-        return obj->toString();
+        str = obj->toString();
     } else if ( t == JSON_ARRAY ) {
         const JsonArray  * ary = (const JsonArray*) item;
-        return ary->toString();
+        str = ary->toString();
     } else if ( t == JSON_NUMBER ) {
         const JsonNumber * num = (const JsonNumber*) item;
-        return num->toString();
+        str = num->toString();
     } else if ( t == JSON_STRING ) {
-        const JsonString * str = (const JsonString*) item;
-        return str->toString(asJson);
+        const JsonString * jstr = (const JsonString*) item;
+        str = jstr->toString(asJson);
     } else if ( t == JSON_BOOLEAN ) {
         const JsonBoolean * jb = (const JsonBoolean*) item;
-        return jb->toString();
+        str = jb->toString();
     } else if ( t == JSON_NULL ) {
-        return item->toString();
+        str = item->toString();
     }
 
-    return std::string("Invalid type");
+    return str;
 }
 
 

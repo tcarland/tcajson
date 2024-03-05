@@ -10,3 +10,5 @@ RUN mkdir -p /opt/tcajson
 COPY . /opt/tcajson
 
 RUN cd tcajson && make arlib && make install
+
+USER tdh
