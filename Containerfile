@@ -10,6 +10,9 @@ WORKDIR /opt
 RUN mkdir -p /opt/tcajson
 COPY . /opt/tcajson
 
-RUN cd tcajson && make arlib && make install
+RUN chown -R tdh tcajson && \
+    cd tcajson && \
+    make arlib && \
+    make install
 
 USER tdh
