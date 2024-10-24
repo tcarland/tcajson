@@ -172,7 +172,7 @@ JsonArray::clear()
 
 /** Converts the JsonArray to a proper JSON formatted string */
 std::string
-JsonArray::toString() const
+JsonArray::toString ( bool asJson ) const
 {
     JsonArray::const_iterator jIter;
     std::stringstream  jstr;

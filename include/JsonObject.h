@@ -80,7 +80,7 @@ class JsonObject : public JsonType {
     void            clear();
 
     virtual 
-    std::string     toString() const;
+    std::string     toString ( bool asJson = true ) const;
 
 
   protected:

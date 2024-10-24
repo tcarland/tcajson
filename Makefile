@@ -9,7 +9,7 @@ endif
 
 OPT_FLAGS+= -fPIC -O2
 CCSHARED+=	-Wl,-soname,$@
-CXXFLAGS=	-std=c++11
+CXXFLAGS=	-std=c++17
 
 INCLUDES=   -Iinclude
 LIBS=
@@ -36,7 +36,7 @@ all: lib
 
 lib: arlib
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.4.2
+solib: libtcajson.so.2.4.3
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
