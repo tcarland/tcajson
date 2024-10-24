@@ -69,7 +69,7 @@ class JsonArray : public JsonType {
     JsonType*       at ( size_type index );
     const JsonType* at ( size_type index ) const;
 
-    virtual std::string toString() const;
+    virtual std::string toString ( bool asJson = true ) const;
 
   private:
 

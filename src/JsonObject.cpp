@@ -208,7 +208,7 @@ JsonObject::clear()
 
 /** Converts the JsonObject to a readable string */
 std::string
-JsonObject::toString() const
+JsonObject::toString ( bool asJson ) const
 {
     JsonObject::const_iterator jIter;
     std::stringstream jstr;
