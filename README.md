@@ -1,7 +1,7 @@
 tcajson
 ========
 
-Copyright (c) 2008-2024 Timothy Charlton Arland <tcarland@gmail.com> <tca@charltontechnology.net>
+Copyright (c) 2008-2025 Timothy Charlton Arland <tcarland@gmail.com> <tca@charltontechnology.net>
 
 
 ## LICENSE
@@ -30,9 +30,9 @@ standard, [RFC 4627](www.ietf.org/rfc/rfc4627.txt).
 JSON or *JavaScript Object Notation*, is a text format for serializing
 structured data. More information about JSON can be found at www.json.org.   
 
-This implementation was created in 2008 after browsing the available
+This implementation was first created in 2008 after browsing the available
 (at the time) C++ JSON implementations and either not liking the library API,
-or not liking the licensing for the given library or both.   
+or the licensing for the given library, or both.   
 
 
 ## API
