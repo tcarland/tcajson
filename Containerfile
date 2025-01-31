@@ -7,10 +7,9 @@ ENV TCAMAKE_PREFIX=/usr
 USER root
 WORKDIR /opt
 
-RUN mkdir -p /opt/tcajson
 COPY . /opt/tcajson
 
-RUN chown -R tdh tcajson && \
+RUN chown -R tdh /opt/tcajson && \
     cd tcajson && \
     make arlib && \
     make install
