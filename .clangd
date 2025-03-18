@@ -1,0 +1,7 @@
+CompileFlags:
+  Add:
+    - "--include-directory=./include"
+    - "-xc++"
+Diagnostics:
+  UnusedIncludes: None
+

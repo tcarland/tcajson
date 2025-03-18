@@ -27,7 +27,6 @@
 #include <sstream>
 
 #include "JsonType.hpp"
-#include "JSON.h"
 
 
 namespace tcajson {
