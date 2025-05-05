@@ -9,38 +9,38 @@ Copyright (c) 2008-2025 Timothy Charlton Arland <tcarland@gmail.com> <tca@charlt
 **tcajson** is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as
 published by the Free Software Foundation, either version 3 of
-the License, or (at your option) any later version.
+the License, or (at your option) any later version.  
 
 **tcajson** is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+GNU Lesser General Public License for more details.  
 
 You should have received a copy of the GNU Lesser General Public
-License along with **tcajson**.
-If not, see <http://www.gnu.org/licenses/>.
+License along with **tcajson**.    
+If not, see <http://www.gnu.org/licenses/>.  
 
 ---
 
 # Overview
 
 The **tcajson** library is a C++ library implementation of the JSON
-standard, [RFC 4627](www.ietf.org/rfc/rfc4627.txt).
+standard, [RFC 4627](www.ietf.org/rfc/rfc4627.txt). 
 
 JSON or *JavaScript Object Notation*, is a text format for serializing
-structured data. More information about JSON can be found at www.json.org.
+structured data. More information about JSON can be found at www.json.org.   
 
 This implementation was first created in 2008 after browsing the available
 (at the time) C++ JSON implementations and either not liking the library API,
-or the licensing for the given library, or both.
+or the licensing for the given library, or both.   
 
 
 ## API
 
 The library consists of the following classes:
 
-- **JSON** - The *JSON* class is the primary interface for working with
-  JSON documents.
+- **JSON** - The *JSON* class is the primary interface for working with 
+  JSON documents.  
 
 - **JsonType** - A JsonType is the base class for all JSON types consisting
   of literals such numbers, booleans, and strings as well as our array and
@@ -67,8 +67,6 @@ git clone https://github.com/tcarland/tcamake.git
 <br>
 
 ---
-
-<br>
 
 ## Examples
 ```cpp
@@ -103,15 +101,14 @@ int main() {
 }
 ```
 
-The this would create the following JSON
-```sh
-make test
-./test/jsoncreate
+The resulting JSON string output:
+```
+$./jsoncreate
 { "clients" : [ "192.168.1.2", "192.168.1.3", "192.168.1.4" ], "contact" : "admin@domain.com", "servers" : [ "localhost:8082", "www:8088" ], "timeout" : 120 }
 ```
 
 
-That JSON in a more readable form via `./test/jsoncreate | jq`:
+That JSON in a more readable form:
 ```json
 {
     "clients" : [
