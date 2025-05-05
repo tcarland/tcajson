@@ -8,3 +8,6 @@
 .settings
 lib
 compile_flags.txt
+
+test/jsoncreate
+test/jsontest
