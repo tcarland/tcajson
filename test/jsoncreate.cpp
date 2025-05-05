@@ -23,8 +23,7 @@ int main() {
     jobj.insert("timeout", new JsonNumber(120));
     jobj.insert("contact", new JsonString("admin@domain.com"));
 
-    std::cout << "Resulting Object: " << std::endl << jobj << std::endl;
+    std::cout << jobj << std::endl;
 
     return 0;
 }
-
