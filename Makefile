@@ -36,14 +36,14 @@ all: lib
 
 lib: arlib
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.5.2
+solib: libtcajson.so.2.5.3
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.2.5.2: $(OBJS)
+libtcajson.so.2.5.3: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)
