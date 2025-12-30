@@ -1,7 +1,7 @@
 /**
   * @file JsonObject.h
   *
-  * Copyright (c) 2012-2025 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2012-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
