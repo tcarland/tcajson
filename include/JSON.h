@@ -1,7 +1,7 @@
 /**
   * @file JSON.h
   *
-  * Copyright (c) 2008-2025 Timothy Charlton Arland <tcarland@gmail.com>
+  * Copyright (c) 2008-2026 Timothy Charlton Arland <tcarland@gmail.com>
   *
   * @section LICENSE
   *
@@ -37,7 +37,7 @@
 namespace tcajson {
 
 
-#define TCAJSON_VERSION    "v2.5.5"
+#define TCAJSON_VERSION    "v2.5.6"
 #define TCAJSON_ERRSTRLEN   48
 
 

@@ -1,7 +1,7 @@
 tcajson
 ========
 
-Copyright (c) 2008-2025 Timothy Charlton Arland <tcarland@gmail.com> <tca@charltontechnology.net>
+Copyright (c) 2008-2026 Timothy Charlton Arland <tcarland@gmail.com>, <tca@charltontechnology.net>
 
 
 ## LICENSE
@@ -43,8 +43,8 @@ The library consists of the following classes:
   JSON documents.
 
 - **JsonType** - A JsonType is the base class for all JSON types consisting
-  of literals such numbers, booleans, and strings as well as our array and
-  object.
+  of literals such numbers, booleans, and strings as well as the Array and
+  Object types.
 
 - **JsonLiteral** - Provides a base implementation for our various literals:
   *JsonInteger, JsonLong, JsonNumber, JsonBoolean and JsonString*.
@@ -56,9 +56,9 @@ The library consists of the following classes:
 
 ## Build
 
-To build the library, first download the tcamake package via git. After
-this, a simple 'make' will build the library. By default, the Makefile looks
-for tcamake in '..'
+To build the library, first download the [tcamake](https://github.com/tcarland/tcamake)
+package. A simple `make` will build the library. By default, the Makefile looks
+for *tcamake* in '..'
 ```sh
 cd ..
 git clone https://github.com/tcarland/tcamake.git
@@ -110,8 +110,7 @@ make test
 { "clients" : [ "192.168.1.2", "192.168.1.3", "192.168.1.4" ], "contact" : "admin@domain.com", "servers" : [ "localhost:8082", "www:8088" ], "timeout" : 120 }
 ```
 
-
-That JSON in a more readable form via `./test/jsoncreate | jq`:
+That same JSON in a more readable form via `./test/jsoncreate | jq`:
 ```json
 {
     "clients" : [
