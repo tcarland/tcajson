@@ -104,7 +104,7 @@ JsonObject::operator[] ( const std::string & key )
     iterator iter;
 
     if ( (iter = this->find(key)) == _items.end() )
-        return NULL;
+        return nullptr;
     return iter->second;
 }
 
@@ -113,7 +113,7 @@ JsonObject::operator[] ( const std::string & key ) const
 {
     const_iterator iter = this->find(key);
     if ( iter == _items.end() )
-        return NULL;
+        return nullptr;
     return iter->second;
 }
 
