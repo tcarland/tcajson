@@ -1,7 +1,5 @@
 # tcajson Makefile
-
-# set requirements
-NEED_SOCKET = 1
+NEED_LIBDL = 1
 
 ifdef TCAMAKE_DEBUG
 OPT_FLAGS= 	-g
@@ -36,14 +34,14 @@ all: lib
 
 lib: arlib
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.5.7
+solib: libtcajson.so.2.5.8
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.2.5.7: $(OBJS)
+libtcajson.so.2.5.8: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)
