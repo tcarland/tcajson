@@ -2,14 +2,14 @@
 NEED_LIBDL = 1
 
 ifdef TCAMAKE_DEBUG
-OPT_FLAGS= 	-g
+OPT_FLAGS= -g
 endif
 
 OPT_FLAGS+= -fPIC -O2
-CCSHARED+=	-Wl,-soname,$@
-CXXFLAGS=	-std=c++23
+CCSHARED+= -Wl,-soname,$@
+CXXFLAGS= -std=c++23
 
-INCLUDES=   -Iinclude
+INCLUDES= -Iinclude
 LIBS=
 BIN=
 OBJS=		src/JsonObject.o src/JsonArray.o src/JSON.o
@@ -34,14 +34,14 @@ all: lib
 
 lib: arlib
 arlib: lib/libtcajson.a
-solib: libtcajson.so.2.5.9
+solib: libtcajson.so.2.5.10
 
 lib/libtcajson.a: $(OBJS)
 	( $(MKDIR) lib )
 	$(make-lib-rule)
 	@echo
 
-libtcajson.so.2.5.9: $(OBJS)
+libtcajson.so.2.5.10: $(OBJS)
 	( $(MKDIR) lib )
 	( $(RM) lib/$@ lib/libtcajson.so )
 	$(make-so-rule)

@@ -4,6 +4,7 @@
 *.lo
 *.bd
 .*.sw*
+.cache
 .metadata
 .settings
 lib
